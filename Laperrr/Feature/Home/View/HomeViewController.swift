@@ -8,11 +8,22 @@
 import UIKit
 
 class HomeViewController: UIViewController {
-
+    
+    let changeNavbarTitle: (_ title: String) -> Void
+    
+    init(callBack: @escaping (_ title: String) -> Void) {
+        self.changeNavbarTitle = callBack
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        print("TES")
+        
+        self.changeNavbarTitle("Home")
     }
 
 

@@ -12,6 +12,7 @@ import RxCocoa
 final class HomeTabBarViewModel: ViewModel {
     public struct Input {
         let loadTrigger: Driver<Void>
+        let callBack: (_ title: String) -> Void
     }
     
     public struct Output {
@@ -22,6 +23,7 @@ final class HomeTabBarViewModel: ViewModel {
         let viewControllers = input.loadTrigger.flatMapLatest { _ -> Driver<[UIViewController]>in
             
             let vcList = HomeTabBarViewControllerList.shared
+            HomeTabBarViewControllerList.shared.setTitleChangeCallback(callBack: input.callBack)
             let tabVCList = [
                 vcList.getHomeViewController(),
                 vcList.getCategoryListViewController()

@@ -26,13 +26,16 @@ class HomeTabBarViewController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "tes"
 
-        self.setupView()
+        self.setupNavigationBar()
+        self.setupTabBarView()
         self.bindUI()
     }
     
     private func bindUI() {
-        let output = self.viewModel.transform(input: HomeTabBarViewModel.Input(loadTrigger: loadTrigger.asDriver()))
+        let output = self.viewModel.transform(input: HomeTabBarViewModel.Input(loadTrigger: loadTrigger.asDriver(), callBack: self.changeNavigationBarTitle
+        ))
         
         self.disposeBag.insert(
             output.data.drive(onNext: { [weak self] viewControllers in
@@ -41,11 +44,21 @@ class HomeTabBarViewController: UITabBarController {
         )
     }
     
-    private func setupView() {
+    private func setupNavigationBar() {
+        UINavigationBar.appearance().barTintColor = UIColor.black
+        UINavigationBar.appearance().tintColor = UIColor.white
+        UINavigationBar.appearance().isTranslucent = false
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.white]
+    }
+    
+    private func setupTabBarView() {
         self.tabBar.tintColor = UIColor.white
-        self.tabBar.backgroundColor = UIColor.black
         self.tabBar.barTintColor = UIColor.black
         self.tabBar.isTranslucent = false
+    }
+    
+    func changeNavigationBarTitle(title: String) {
+        self.title = title
     }
 
 }
