@@ -1,0 +1,6 @@
+framework module Pods_Laperrr_LaperrrUITests {
+  umbrella header "Pods-Laperrr-LaperrrUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
