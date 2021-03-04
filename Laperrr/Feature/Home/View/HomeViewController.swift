@@ -9,9 +9,14 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    
+    let refreshControl: UIRefreshControl
     let changeNavbarTitle: (_ title: String) -> Void
     
     init(callBack: @escaping (_ title: String) -> Void) {
+        self.refreshControl = UIRefreshControl()
         self.changeNavbarTitle = callBack
         super.init(nibName: nil, bundle: nil)
     }
@@ -22,19 +27,22 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.changeNavbarTitle("Home")
+        
+        self.setupTableView()
+    }
+    
+    private func setupTableView() {
+        self.tableView.register(UINib(nibName: "ThesisTableViewCell", bundle: nil), forCellReuseIdentifier: "ThesisTableViewCell")
+        self.tableView.delegate = self
+        self.tableView.refreshControl = self.refreshControl
+        self.tableView.backgroundColor = #colorLiteral(red: 0.9490196078, green: 0.9490196078, blue: 0.968627451, alpha: 1)
+        self.tableView.estimatedRowHeight = 256.0
+        self.tableView.rowHeight = UITableView.automaticDimension
     }
 
+}
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+extension HomeViewController: UITableViewDelegate {
+    
 }
