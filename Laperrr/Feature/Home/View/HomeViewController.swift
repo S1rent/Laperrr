@@ -37,6 +37,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         self.changeNavbarTitle("Home")
         
+        self.setupSearchBar()
         self.setupTableView()
         self.bindUI()
     }
@@ -67,7 +68,13 @@ class HomeViewController: UIViewController {
         self.tableView.estimatedRowHeight = 256.0
         self.tableView.rowHeight = UITableView.automaticDimension
     }
-
+    
+    private func setupSearchBar() {
+        self.searchBar.tintColor = UIColor.white
+        self.searchBar.backgroundColor = UIColor.white
+        self.searchBar.isTranslucent = false
+        self.searchBar.placeholder = "Search foodies..."
+    }
 }
 
 extension HomeViewController: UITableViewDelegate {
