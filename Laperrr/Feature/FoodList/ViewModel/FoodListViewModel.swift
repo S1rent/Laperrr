@@ -1,5 +1,5 @@
 //
-//  HomeViewModel.swift
+//  FoodListViewModel.swift
 //  Laperrr
 //
 //  Created by IT Division on 04/03/21.
@@ -9,7 +9,7 @@ import Foundation
 import RxCocoa
 import RxSwift
 
-final class HomeViewModel: ViewModel {
+final class FoodListViewModel: ViewModel {
     
     public struct Input {
         let loadTrigger: Driver<Void>
@@ -35,7 +35,7 @@ final class HomeViewModel: ViewModel {
             dataRelay.accept([])
             
             for _ in 0...10 {
-                HomeNetworkProvider.shared.getRandomFood().trackActivity(activityTracker)
+                FoodListNetworkProvider.shared.getRandomFood().trackActivity(activityTracker)
                     .trackError(errorTracker)
                     .asDriverOnErrorJustComplete()
                     .do(onNext: { data in

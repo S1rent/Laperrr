@@ -1,5 +1,5 @@
 //
-//  HomeResponseWrapper.swift
+//  FoodListResponseWrapper.swift
 //  Laperrr
 //
 //  Created by IT Division on 04/03/21.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct HomeResponseWrapper: Decodable {
+public struct FoodListResponseWrapper: Decodable {
     let data: [Food]?
     
     internal enum CodingKeys: String, CodingKey {

@@ -14,9 +14,9 @@ final class HomeTabBarViewControllerList {
     static let shared = HomeTabBarViewControllerList()
     var callBack: ((_ title: String) -> Void) = { _ in }
     
-    func getHomeViewController() -> UIViewController {
-        let viewController = HomeViewController(callBack: callBack)
-        viewController.tabBarItem = UITabBarItem(title: "Home", image: #imageLiteral(resourceName: "icn-home"), tag: 0)
+    func getFoodListViewController() -> UIViewController {
+        let viewController = FoodListViewController(callBack: callBack)
+        viewController.tabBarItem = UITabBarItem(title: "Foods", image: #imageLiteral(resourceName: "icn-home"), tag: 0)
         viewController.tabBarItem.imageInsets = UIEdgeInsets.init(top: -5, left: -5, bottom: -5, right: -5)
         
         return viewController

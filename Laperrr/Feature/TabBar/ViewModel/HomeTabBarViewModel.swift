@@ -25,7 +25,7 @@ final class HomeTabBarViewModel: ViewModel {
             let vcList = HomeTabBarViewControllerList.shared
             HomeTabBarViewControllerList.shared.setTitleChangeCallback(callBack: input.callBack)
             let tabVCList = [
-                vcList.getHomeViewController(),
+                vcList.getFoodListViewController(),
                 vcList.getCategoryListViewController()
             ]
             
