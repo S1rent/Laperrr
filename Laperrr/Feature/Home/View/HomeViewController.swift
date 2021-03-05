@@ -8,11 +8,36 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import SnapKit
 
 class HomeViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView! {
+        didSet {
+            self.activityIndicator.isHidden = true
+            self.activityIndicator.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+            self.activityIndicator.color = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            self.activityIndicator.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+            self.activityIndicator.layer.cornerRadius = 6
+            self.activityIndicator.snp.makeConstraints { make in
+                make.height.equalTo(50)
+                make.width.equalTo(50)
+            }
+        }
+    }
+    
+    private lazy var noResultView: UILabel = {
+        let label = UILabel()
+        label.text = "No Data"
+        label.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.38)
+        tableView.addSubview(label)
+        label.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+        }
+        return label
+    }()
     
     let viewModel: HomeViewModel
     let loadTrigger = BehaviorRelay<Void>(value: ())
@@ -56,11 +81,22 @@ class HomeViewController: UIViewController {
                 cell.setData(data)
             },
             output.loading.drive(onNext: { [weak self] loading in
-                
+                if loading {
+                    self?.tableView.refreshControl?.alpha = 0
+                    let height = self?.refreshControl.frame.height
+                    self?.tableView.setContentOffset(CGPoint(x: 0, y: -(height ?? 0)), animated: true)
+                    self?.activityIndicator.startAnimating()
+                    self?.activityIndicator.isHidden = false
+                    self?.activityIndicator.alpha = 1
+                    self?.noResultView.isHidden = true
+                } else {
+                    self?.refreshControl.endRefreshing()
+                    self?.activityIndicator.stopAnimating()
+                    self?.activityIndicator.isHidden = true
+                    self?.activityIndicator.alpha = 0
+                }
             }),
-            output.noData.drive(onNext: { [weak self] noData in
-                
-            })
+            output.noData.drive(self.noResultView.rx.isHidden)
         )
     }
     

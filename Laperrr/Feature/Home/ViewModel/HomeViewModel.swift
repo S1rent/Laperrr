@@ -19,7 +19,7 @@ final class HomeViewModel: ViewModel {
     public struct Output {
         let data: Driver<[Food]>
         let loading: Driver<Bool>
-        let noData: Driver<Void>
+        let noData: Driver<Bool>
     }
     
     func transform(input: Input) -> Output {
@@ -31,7 +31,9 @@ final class HomeViewModel: ViewModel {
         let dataRelay = BehaviorRelay<[Food]>(value: [])
         
         let data = Driver.merge(input.refreshTrigger, input.loadTrigger).flatMap{ _ -> Driver<[Food]> in
-                   
+            
+            dataRelay.accept([])
+            
             for _ in 0...10 {
                 HomeNetworkProvider.shared.getRandomFood().trackActivity(activityTracker)
                     .trackError(errorTracker)
@@ -44,7 +46,7 @@ final class HomeViewModel: ViewModel {
             return dataRelay.asDriver()
         }
         
-        let noData = data.filter{ $0.isEmpty }.map{ _ in }
+        let noData = data.map{ !$0.isEmpty }
         
         return Output(data: data,
                       loading: activityTracker.asDriver(),

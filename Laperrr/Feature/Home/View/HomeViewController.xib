@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="Laperrr" customModuleProvider="target">
             <connections>
+                <outlet property="activityIndicator" destination="65d-iu-vrs" id="s7u-La-RKa"/>
                 <outlet property="searchBar" destination="hlY-0r-GE9" id="60T-3n-SX1"/>
                 <outlet property="tableView" destination="HMF-i0-74j" id="fiO-89-blp"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -30,12 +31,17 @@
                     <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <textInputTraits key="textInputTraits"/>
                 </searchBar>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="65d-iu-vrs">
+                    <rect key="frame" x="197" y="438" width="20" height="20"/>
+                </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="65d-iu-vrs" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Q3j-wY-G7k"/>
                 <constraint firstItem="hlY-0r-GE9" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Zp4-ug-2Wi"/>
                 <constraint firstItem="HMF-i0-74j" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="f1Z-Qq-J9x"/>
+                <constraint firstItem="65d-iu-vrs" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="hTi-GC-N4A"/>
                 <constraint firstItem="hlY-0r-GE9" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="iYP-KG-7Vw"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="HMF-i0-74j" secondAttribute="trailing" id="jXA-S3-hxh"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="HMF-i0-74j" secondAttribute="bottom" id="jdL-Nh-ftW"/>
