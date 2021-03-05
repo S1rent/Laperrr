@@ -14,13 +14,15 @@ public struct ProfileModel {
     let picture: UIImage
     let educationList: [Experience]
     let workingExperienceList: [Experience]
+    let skills: [Skill]
     
-    public init(name: String, email: String, picture: UIImage, educationList: [Experience], workingExperienceList: [Experience]) {
+    public init(name: String, email: String, picture: UIImage, educationList: [Experience], workingExperienceList: [Experience], skills: [Skill]) {
         self.name = name
         self.email = email
         self.educationList = educationList
         self.workingExperienceList = workingExperienceList
         self.picture = picture
+        self.skills = skills
     }
 }
 
@@ -34,6 +36,11 @@ public struct Experience {
     }
 }
 
+public struct Skill {
+    let skillName: String
+    let progress: Double
+}
+
 class Profile {
     static let shared = Profile()
     public init() { }
@@ -44,8 +51,14 @@ class Profile {
         return model
     }
     
-    public func makeProfileModel(name: String, email: String, picture: UIImage, educationList: [Experience], workingExperienceList: [Experience]) -> ProfileModel {
-        let model = ProfileModel(name: name, email: email, picture: picture, educationList: educationList, workingExperienceList: workingExperienceList)
+    public func makeSkillModel(skillName: String, progress: Double) -> Skill {
+        let model = Skill(skillName: skillName, progress: progress)
+        
+        return model
+    }
+    
+    public func makeProfileModel(name: String, email: String, picture: UIImage, educationList: [Experience], workingExperienceList: [Experience], skills: [Skill]) -> ProfileModel {
+        let model = ProfileModel(name: name, email: email, picture: picture, educationList: educationList, workingExperienceList: workingExperienceList, skills: skills)
         
         return model
     }

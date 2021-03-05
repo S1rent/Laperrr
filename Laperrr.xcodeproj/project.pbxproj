@@ -11,8 +11,8 @@
 		12767CAD73ABA6895ED6D02C /* Pods_Laperrr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2893E0DB9C53481A2FF791F3 /* Pods_Laperrr.framework */; };
 		A160610725F1FBFD00345625 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A160610525F1FBFD00345625 /* ProfileViewController.swift */; };
 		A160610825F1FBFD00345625 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A160610625F1FBFD00345625 /* ProfileViewController.xib */; };
-		A160611425F23FB800345625 /* ProfileItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A160611325F23FB800345625 /* ProfileItemView.swift */; };
-		A160611925F23FC700345625 /* ProfileItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A160611825F23FC700345625 /* ProfileItemView.xib */; };
+		A160611425F23FB800345625 /* ExperienceItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A160611325F23FB800345625 /* ExperienceItemView.swift */; };
+		A160611925F23FC700345625 /* ExperienceItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A160611825F23FC700345625 /* ExperienceItemView.xib */; };
 		A160611E25F2457000345625 /* UIStackView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A160611D25F2457000345625 /* UIStackView+Extension.swift */; };
 		A160612525F2462A00345625 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A160612425F2462A00345625 /* ProfileViewModel.swift */; };
 		A160612C25F246F700345625 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A160612B25F246F700345625 /* Profile.swift */; };
@@ -70,8 +70,8 @@
 		A1269DDD0B9F0AB3A7F20F10 /* Pods_Laperrr_LaperrrUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Laperrr_LaperrrUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A160610525F1FBFD00345625 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		A160610625F1FBFD00345625 /* ProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
-		A160611325F23FB800345625 /* ProfileItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileItemView.swift; sourceTree = "<group>"; };
-		A160611825F23FC700345625 /* ProfileItemView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileItemView.xib; sourceTree = "<group>"; };
+		A160611325F23FB800345625 /* ExperienceItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceItemView.swift; sourceTree = "<group>"; };
+		A160611825F23FC700345625 /* ExperienceItemView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExperienceItemView.xib; sourceTree = "<group>"; };
 		A160611D25F2457000345625 /* UIStackView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extension.swift"; sourceTree = "<group>"; };
 		A160612425F2462A00345625 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		A160612B25F246F700345625 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
@@ -172,13 +172,13 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
-		A160610F25F23F8600345625 /* Item */ = {
+		A160610F25F23F8600345625 /* ExperienceItemView */ = {
 			isa = PBXGroup;
 			children = (
-				A160611325F23FB800345625 /* ProfileItemView.swift */,
-				A160611825F23FC700345625 /* ProfileItemView.xib */,
+				A160611325F23FB800345625 /* ExperienceItemView.swift */,
+				A160611825F23FC700345625 /* ExperienceItemView.xib */,
 			);
-			path = Item;
+			path = ExperienceItemView;
 			sourceTree = "<group>";
 		};
 		A160612225F245DF00345625 /* ViewModel */ = {
@@ -192,7 +192,8 @@
 		A160612325F245E300345625 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				A160610F25F23F8600345625 /* Item */,
+				A160613625F28BF000345625 /* SkillItemView */,
+				A160610F25F23F8600345625 /* ExperienceItemView */,
 				A160610525F1FBFD00345625 /* ProfileViewController.swift */,
 				A160610625F1FBFD00345625 /* ProfileViewController.xib */,
 			);
@@ -205,6 +206,13 @@
 				A160612B25F246F700345625 /* Profile.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		A160613625F28BF000345625 /* SkillItemView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SkillItemView;
 			sourceTree = "<group>";
 		};
 		A195684A25F12366004EB1C9 /* Singleton */ = {
@@ -586,7 +594,7 @@
 				A1DA372825F11ED300D3917D /* CategoriesViewController.xib in Resources */,
 				A1DC995625F141F000DD0D1C /* HomeTableViewCell.xib in Resources */,
 				A1DA371825F11E1B00D3917D /* HomeViewController.xib in Resources */,
-				A160611925F23FC700345625 /* ProfileItemView.xib in Resources */,
+				A160611925F23FC700345625 /* ExperienceItemView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -726,7 +734,7 @@
 				A1DA353525F0CF3600D3917D /* AppDelegate.swift in Sources */,
 				A160610725F1FBFD00345625 /* ProfileViewController.swift in Sources */,
 				A1DC996325F1451000DD0D1C /* HomeNetworkProvider.swift in Sources */,
-				A160611425F23FB800345625 /* ProfileItemView.swift in Sources */,
+				A160611425F23FB800345625 /* ExperienceItemView.swift in Sources */,
 				A1DC995525F141F000DD0D1C /* HomeTableViewCell.swift in Sources */,
 				A1DA353725F0CF3600D3917D /* SceneDelegate.swift in Sources */,
 				A1DA358025F0D31F00D3917D /* HomeTabBarViewController.swift in Sources */,

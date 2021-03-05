@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ProfileItemView: UIView {
+class ExperienceItemView: UIView {
     
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var labelDuration: UILabel!
@@ -24,7 +24,7 @@ class ProfileItemView: UIView {
     }
     
     private func bindNib(){
-        Bundle.main.loadNibNamed(ProfileItemView.identifier, owner: self, options: nil)
+        Bundle.main.loadNibNamed(ExperienceItemView.identifier, owner: self, options: nil)
         self.addSubview(self.contentView)
         self.contentView.frame = self.bounds
         self.contentView.layer.masksToBounds = true
@@ -33,7 +33,7 @@ class ProfileItemView: UIView {
     }
     
     private func setupView() {
-        self.roundedView.layer.cornerRadius = 6
+        self.roundedView.layer.cornerRadius = self.roundedView.frame.width/2
     }
     
 }

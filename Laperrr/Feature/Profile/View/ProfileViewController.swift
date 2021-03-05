@@ -18,6 +18,8 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var educationInitView: UIView!
     @IBOutlet weak var workingExperienceStackView: UIStackView!
     @IBOutlet weak var workingExperienceInitView: UIView!
+    @IBOutlet weak var skillInitView: UIView!
+    @IBOutlet weak var skillStackView: UIStackView!
     @IBOutlet weak var gradientView: UIView!
     
     let viewModel: ProfileViewModel
@@ -73,12 +75,12 @@ class ProfileViewController: UIViewController {
     private func setupStackViewData(stackView: UIStackView, experienceList: [Experience]) {
         
         for (index, experience) in experienceList.enumerated() {
-            let profileItem = ProfileItemView()
+            let experienceItem = ExperienceItemView()
             
-            profileItem.labelDuration.text = experience.timeSpan
-            profileItem.labelDescription.text = experience.institutionName
+            experienceItem.labelDuration.text = experience.timeSpan
+            experienceItem.labelDescription.text = experience.institutionName
             
-            stackView.addArrangedSubview(profileItem)
+            stackView.addArrangedSubview(experienceItem)
             
             if index != experienceList.count-1 {
                 let separatorView = addSeparatorView()
@@ -95,17 +97,27 @@ class ProfileViewController: UIViewController {
     
     private func setupView() {
         self.imageProfile.layer.cornerRadius = self.imageProfile.frame.width / 2
+        self.setupStackView(stackView: self.educationStackView)
+        self.setupStackView(stackView: self.workingExperienceStackView)
+        self.setupStackView(stackView: self.skillStackView)
+    }
+    
+    private func setupStackView(stackView: UIStackView) {
+        stackView.safelyRemoveAllArrangedSubviews()
+        stackView.layer.cornerRadius = 6
+        stackView.layer.borderColor = UIColor.lightGray.cgColor
+        stackView.layer.borderWidth = 0.5
         
-        self.workingExperienceStackView.safelyRemoveAllArrangedSubviews()
-        self.educationStackView.safelyRemoveAllArrangedSubviews()
-        
-        self.workingExperienceStackView.layer.cornerRadius = 6
-        self.workingExperienceStackView.layer.borderColor = UIColor.lightGray.cgColor
-        self.workingExperienceStackView.layer.borderWidth = 0.5
-        
-        self.educationStackView.layer.cornerRadius = 6
-        self.educationStackView.layer.borderColor = UIColor.lightGray.cgColor
-        self.educationStackView.layer.borderWidth = 0.5
+        stackView.alpha = 0
+        UIView.animate(
+            withDuration: 1.2,
+            delay: 0.5,
+            usingSpringWithDamping: 0.6,
+            initialSpringVelocity: 0.1,
+            options: [.curveEaseInOut],
+            animations: {
+                stackView.alpha = 1
+        })
     }
     
     private func setupGradient() {

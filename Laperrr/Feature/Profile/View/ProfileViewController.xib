@@ -17,6 +17,8 @@
                 <outlet property="imageProfile" destination="5MW-kJ-lpy" id="dTT-5c-IO8"/>
                 <outlet property="labelEmail" destination="YG2-L9-87I" id="Ejm-LM-aYc"/>
                 <outlet property="labelName" destination="QAQ-hD-6in" id="skq-bv-9Yl"/>
+                <outlet property="skillInitView" destination="RcF-QZ-G3j" id="xKg-QD-LDN"/>
+                <outlet property="skillStackView" destination="XtN-me-RzB" id="wxR-xz-UkF"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="workingExperienceInitView" destination="Wdd-XW-xcW" id="fym-4D-bzr"/>
                 <outlet property="workingExperienceStackView" destination="luj-3e-frh" id="4Wn-BM-paA"/>
@@ -31,7 +33,7 @@
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RBB-qq-wh2">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="409.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="463.5"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cxr-ui-Zgt" userLabel="Gradient View">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="285.5"/>
@@ -71,11 +73,19 @@
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Education" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DaS-Q2-Gr8">
-                                    <rect key="frame" x="16" y="301.5" width="382" height="29"/>
+                                    <rect key="frame" x="44" y="301.5" width="354" height="29"/>
                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="252" verticalHuggingPriority="251" image="graduationcap" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="KBj-br-93B">
+                                    <rect key="frame" x="16" y="306" width="24" height="26.5"/>
+                                    <color key="tintColor" systemColor="labelColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="24" id="OWV-yc-TY8"/>
+                                        <constraint firstAttribute="width" constant="24" id="WaA-fa-tSO"/>
+                                    </constraints>
+                                </imageView>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="No9-dl-Ww3">
                                     <rect key="frame" x="16" y="338.5" width="382" height="1"/>
                                     <subviews>
@@ -95,7 +105,7 @@
                                     </constraints>
                                 </stackView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Working Experience" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F0S-EH-Wyx">
-                                    <rect key="frame" x="16" y="355.5" width="382" height="29"/>
+                                    <rect key="frame" x="44" y="355.5" width="354" height="29"/>
                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -118,22 +128,74 @@
                                         <constraint firstItem="Wdd-XW-xcW" firstAttribute="leading" secondItem="luj-3e-frh" secondAttribute="leading" id="dRf-fX-HUK"/>
                                     </constraints>
                                 </stackView>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="252" verticalHuggingPriority="251" image="briefcase" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="fcj-bN-ZfI">
+                                    <rect key="frame" x="16" y="361.5" width="24" height="22"/>
+                                    <color key="tintColor" systemColor="labelColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="24" id="BIr-eT-qvN"/>
+                                        <constraint firstAttribute="width" constant="24" id="rK7-9l-0qk"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Skills" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="axR-G9-3gw">
+                                    <rect key="frame" x="44" y="409.5" width="57.5" height="29"/>
+                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="XtN-me-RzB">
+                                    <rect key="frame" x="16" y="446.5" width="382" height="1"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RcF-QZ-G3j">
+                                            <rect key="frame" x="0.0" y="0.0" width="382" height="1"/>
+                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="1" id="QIC-md-oGY"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="RcF-QZ-G3j" secondAttribute="trailing" id="CR4-Mc-4Q2"/>
+                                        <constraint firstItem="RcF-QZ-G3j" firstAttribute="leading" secondItem="XtN-me-RzB" secondAttribute="leading" id="YLt-7C-yGr"/>
+                                        <constraint firstAttribute="bottom" secondItem="RcF-QZ-G3j" secondAttribute="bottom" id="tIE-gj-brJ"/>
+                                        <constraint firstItem="RcF-QZ-G3j" firstAttribute="top" secondItem="XtN-me-RzB" secondAttribute="top" id="vvs-Ea-Vz9"/>
+                                    </constraints>
+                                </stackView>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="252" verticalHuggingPriority="251" image="gearshape.2" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="BUg-tf-fil">
+                                    <rect key="frame" x="16" y="414" width="24" height="24.5"/>
+                                    <color key="tintColor" systemColor="labelColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="24" id="Ahq-eY-roK"/>
+                                        <constraint firstAttribute="width" constant="24" id="q1N-Fw-Faj"/>
+                                    </constraints>
+                                </imageView>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
+                                <constraint firstItem="F0S-EH-Wyx" firstAttribute="leading" secondItem="fcj-bN-ZfI" secondAttribute="trailing" constant="4" id="1t6-gf-FXs"/>
                                 <constraint firstItem="luj-3e-frh" firstAttribute="top" secondItem="F0S-EH-Wyx" secondAttribute="bottom" constant="8" id="3Tg-gz-chX"/>
+                                <constraint firstItem="fcj-bN-ZfI" firstAttribute="leading" secondItem="KBj-br-93B" secondAttribute="leading" id="4wB-f0-FRI"/>
                                 <constraint firstAttribute="trailing" secondItem="DaS-Q2-Gr8" secondAttribute="trailing" constant="16" id="5nk-jG-5A7"/>
                                 <constraint firstItem="No9-dl-Ww3" firstAttribute="top" secondItem="DaS-Q2-Gr8" secondAttribute="bottom" constant="8" id="7Bd-dR-L2o"/>
+                                <constraint firstItem="DaS-Q2-Gr8" firstAttribute="leading" secondItem="KBj-br-93B" secondAttribute="trailing" constant="4" id="7Lw-rc-uWx"/>
+                                <constraint firstItem="axR-G9-3gw" firstAttribute="leading" secondItem="BUg-tf-fil" secondAttribute="trailing" constant="4" id="Bmb-uS-537"/>
+                                <constraint firstAttribute="trailing" secondItem="XtN-me-RzB" secondAttribute="trailing" constant="16" id="DFo-pR-fTf"/>
                                 <constraint firstAttribute="trailing" secondItem="cxr-ui-Zgt" secondAttribute="trailing" id="HY0-O3-X5p"/>
-                                <constraint firstAttribute="bottom" secondItem="luj-3e-frh" secondAttribute="bottom" constant="16" id="MCo-vp-EEA"/>
+                                <constraint firstItem="axR-G9-3gw" firstAttribute="top" secondItem="luj-3e-frh" secondAttribute="bottom" constant="16" id="KBq-Kt-FgA"/>
+                                <constraint firstItem="fcj-bN-ZfI" firstAttribute="top" secondItem="F0S-EH-Wyx" secondAttribute="top" constant="5" id="Lld-Tf-NsA"/>
                                 <constraint firstAttribute="trailing" secondItem="F0S-EH-Wyx" secondAttribute="trailing" constant="16" id="Mas-0G-k1K"/>
+                                <constraint firstItem="BUg-tf-fil" firstAttribute="top" secondItem="axR-G9-3gw" secondAttribute="top" constant="5" id="Oba-EY-saZ"/>
                                 <constraint firstItem="F0S-EH-Wyx" firstAttribute="top" secondItem="No9-dl-Ww3" secondAttribute="bottom" constant="16" id="P31-5Y-eok"/>
+                                <constraint firstItem="XtN-me-RzB" firstAttribute="top" secondItem="axR-G9-3gw" secondAttribute="bottom" constant="8" symbolic="YES" id="PbZ-SQ-hSr"/>
+                                <constraint firstItem="KBj-br-93B" firstAttribute="leading" secondItem="RBB-qq-wh2" secondAttribute="leading" constant="16" id="U5q-cd-VhK"/>
                                 <constraint firstItem="cxr-ui-Zgt" firstAttribute="top" secondItem="RBB-qq-wh2" secondAttribute="top" id="Um8-n4-gTo"/>
+                                <constraint firstItem="KBj-br-93B" firstAttribute="top" secondItem="DaS-Q2-Gr8" secondAttribute="top" constant="4" id="UvW-yx-Uiq"/>
                                 <constraint firstAttribute="trailing" secondItem="luj-3e-frh" secondAttribute="trailing" constant="16" id="Xn0-4I-OO2"/>
-                                <constraint firstItem="F0S-EH-Wyx" firstAttribute="leading" secondItem="RBB-qq-wh2" secondAttribute="leading" constant="16" id="rq9-qN-MxY"/>
+                                <constraint firstItem="XtN-me-RzB" firstAttribute="leading" secondItem="RBB-qq-wh2" secondAttribute="leading" constant="16" id="gni-Mc-mj8"/>
+                                <constraint firstAttribute="bottom" secondItem="XtN-me-RzB" secondAttribute="bottom" constant="16" id="mKd-qs-LGr"/>
+                                <constraint firstItem="XtN-me-RzB" firstAttribute="top" secondItem="axR-G9-3gw" secondAttribute="bottom" constant="8" id="mfp-uK-PzY"/>
+                                <constraint firstItem="BUg-tf-fil" firstAttribute="leading" secondItem="RBB-qq-wh2" secondAttribute="leading" constant="16" id="qZb-gX-vOm"/>
                                 <constraint firstItem="DaS-Q2-Gr8" firstAttribute="top" secondItem="cxr-ui-Zgt" secondAttribute="bottom" constant="16" id="tkI-sL-W5T"/>
                                 <constraint firstItem="luj-3e-frh" firstAttribute="leading" secondItem="RBB-qq-wh2" secondAttribute="leading" constant="16" id="vRg-ER-6Gy"/>
-                                <constraint firstItem="DaS-Q2-Gr8" firstAttribute="leading" secondItem="RBB-qq-wh2" secondAttribute="leading" constant="16" id="w5C-Ig-eRR"/>
                                 <constraint firstItem="cxr-ui-Zgt" firstAttribute="leading" secondItem="RBB-qq-wh2" secondAttribute="leading" id="x3a-uy-WxS"/>
                                 <constraint firstItem="No9-dl-Ww3" firstAttribute="leading" secondItem="RBB-qq-wh2" secondAttribute="leading" constant="16" id="zfd-fO-lSn"/>
                                 <constraint firstAttribute="trailing" secondItem="No9-dl-Ww3" secondAttribute="trailing" constant="16" id="zzb-BO-zoK"/>
@@ -162,7 +224,13 @@
         </view>
     </objects>
     <resources>
+        <image name="briefcase" catalog="system" width="128" height="102"/>
+        <image name="gearshape.2" catalog="system" width="128" height="100"/>
+        <image name="graduationcap" catalog="system" width="128" height="106"/>
         <image name="person" catalog="system" width="128" height="117"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
