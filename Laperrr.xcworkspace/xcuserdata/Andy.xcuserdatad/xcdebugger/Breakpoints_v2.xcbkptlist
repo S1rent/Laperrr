@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "EF3CE0EC-C4D2-43D8-AE64-B5592D153980"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BC66B609-B503-4171-9210-19F5659B55D6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Laperrr/Feature/Home/API/HomeNetworkProvider.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "getRandomFood()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "BC66B609-B503-4171-9210-19F5659B55D6 - a02fb06e7b51032c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Laperrr.HomeNetworkProvider.getRandomFood() -&gt; RxSwift.Observable&lt;Swift.Array&lt;Laperrr.Food&gt;&gt;"
+                  moduleName = "Laperrr"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Andy/Documents/Philip/IOS/Laperrr/Laperrr/Feature/Home/API/HomeNetworkProvider.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "475">
+               </Location>
+               <Location
+                  uuid = "BC66B609-B503-4171-9210-19F5659B55D6 - 12e37bf4f1d22be2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Laperrr.HomeResponseWrapper) -&gt; Swift.Array&lt;Laperrr.Food&gt; in Laperrr.HomeNetworkProvider.getRandomFood() -&gt; RxSwift.Observable&lt;Swift.Array&lt;Laperrr.Food&gt;&gt;"
+                  moduleName = "Laperrr"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Andy/Documents/Philip/IOS/Laperrr/Laperrr/Feature/Home/API/HomeNetworkProvider.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "39">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

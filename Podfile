@@ -12,7 +12,8 @@ target 'Laperrr' do
     pod 'RxDataSources','4.0.1'
     pod 'RxOptional','4.1.0'
     pod 'SnapKit','5.0.1'
-    pod 'FLEX', '~> 4.4'
+    pod 'FLEX', :configurations => ['Debug']
+    pod 'Alamofire', '~> 5.2'
 
   target 'LaperrrTests' do
     inherit! :search_paths

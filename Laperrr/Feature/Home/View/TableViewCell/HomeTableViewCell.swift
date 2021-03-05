@@ -22,7 +22,7 @@ class HomeTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    public func setData(_ data: Food) {
+    public func setData(_ data: String) {
         
     }
     

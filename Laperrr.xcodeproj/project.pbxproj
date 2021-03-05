@@ -30,6 +30,10 @@
 		A1DC995E25F143B700DD0D1C /* HomeResponseWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DC995D25F143B700DD0D1C /* HomeResponseWrapper.swift */; };
 		A1DC996325F1451000DD0D1C /* HomeNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DC996225F1451000DD0D1C /* HomeNetworkProvider.swift */; };
 		A1DC996825F1461400DD0D1C /* HomeTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DC996725F1461400DD0D1C /* HomeTarget.swift */; };
+		A1DC996D25F147AF00DD0D1C /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DC996C25F147AF00DD0D1C /* HomeViewModel.swift */; };
+		A1DC997325F1495E00DD0D1C /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DC997225F1495E00DD0D1C /* ActivityIndicator.swift */; };
+		A1DC997825F1496300DD0D1C /* ErrorTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DC997725F1496300DD0D1C /* ErrorTracker.swift */; };
+		A1DC997D25F14AF900DD0D1C /* ObservableType+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DC997C25F14AF900DD0D1C /* ObservableType+Extension.swift */; };
 		D0EE62962E65A3AF584BA19A /* Pods_LaperrrTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 959378AD9157508843019A8A /* Pods_LaperrrTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -84,6 +88,10 @@
 		A1DC995D25F143B700DD0D1C /* HomeResponseWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeResponseWrapper.swift; sourceTree = "<group>"; };
 		A1DC996225F1451000DD0D1C /* HomeNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNetworkProvider.swift; sourceTree = "<group>"; };
 		A1DC996725F1461400DD0D1C /* HomeTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTarget.swift; sourceTree = "<group>"; };
+		A1DC996C25F147AF00DD0D1C /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		A1DC997225F1495E00DD0D1C /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
+		A1DC997725F1496300DD0D1C /* ErrorTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorTracker.swift; sourceTree = "<group>"; };
+		A1DC997C25F14AF900DD0D1C /* ObservableType+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableType+Extension.swift"; sourceTree = "<group>"; };
 		A9EC76485A54ABBE516510CF /* Pods-Laperrr-LaperrrUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Laperrr-LaperrrUITests.debug.xcconfig"; path = "Target Support Files/Pods-Laperrr-LaperrrUITests/Pods-Laperrr-LaperrrUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F5731696AAE27D122FD946BF /* Pods-LaperrrTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LaperrrTests.debug.xcconfig"; path = "Target Support Files/Pods-LaperrrTests/Pods-LaperrrTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F9037DFBB06624F9312808E5 /* Pods-Laperrr.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Laperrr.release.xcconfig"; path = "Target Support Files/Pods-Laperrr/Pods-Laperrr.release.xcconfig"; sourceTree = "<group>"; };
@@ -152,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				A195685725F12540004EB1C9 /* UIView+Extension.swift */,
+				A1DC997C25F14AF900DD0D1C /* ObservableType+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -232,6 +241,7 @@
 		A1DA357525F0D07100D3917D /* Internal */ = {
 			isa = PBXGroup;
 			children = (
+				A1DC997125F1494500DD0D1C /* Tracker */,
 				A195685625F1252A004EB1C9 /* Extensions */,
 				A1DA373425F11F5C00D3917D /* Protocols */,
 			);
@@ -297,6 +307,7 @@
 		A1DA371D25F11E5900D3917D /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				A1DC996C25F147AF00DD0D1C /* HomeViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -389,6 +400,15 @@
 				A1DC995425F141F000DD0D1C /* HomeTableViewCell.xib */,
 			);
 			path = TableViewCell;
+			sourceTree = "<group>";
+		};
+		A1DC997125F1494500DD0D1C /* Tracker */ = {
+			isa = PBXGroup;
+			children = (
+				A1DC997725F1496300DD0D1C /* ErrorTracker.swift */,
+				A1DC997225F1495E00DD0D1C /* ActivityIndicator.swift */,
+			);
+			path = Tracker;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -637,13 +657,17 @@
 				A1DA371725F11E1B00D3917D /* HomeViewController.swift in Sources */,
 				A1DA353F25F0CF3600D3917D /* Laperrr.xcdatamodeld in Sources */,
 				A1DA372725F11ED300D3917D /* CategoriesViewController.swift in Sources */,
+				A1DC997825F1496300DD0D1C /* ErrorTracker.swift in Sources */,
+				A1DC997D25F14AF900DD0D1C /* ObservableType+Extension.swift in Sources */,
 				A1DA353525F0CF3600D3917D /* AppDelegate.swift in Sources */,
 				A1DC996325F1451000DD0D1C /* HomeNetworkProvider.swift in Sources */,
 				A1DC995525F141F000DD0D1C /* HomeTableViewCell.swift in Sources */,
 				A1DA353725F0CF3600D3917D /* SceneDelegate.swift in Sources */,
 				A1DA358025F0D31F00D3917D /* HomeTabBarViewController.swift in Sources */,
 				A195685825F12540004EB1C9 /* UIView+Extension.swift in Sources */,
+				A1DC997325F1495E00DD0D1C /* ActivityIndicator.swift in Sources */,
 				A1DA373025F11F4800D3917D /* HomeTabBarViewModel.swift in Sources */,
+				A1DC996D25F147AF00DD0D1C /* HomeViewModel.swift in Sources */,
 				A195687C25F12985004EB1C9 /* HomeTabBarViewControllerList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

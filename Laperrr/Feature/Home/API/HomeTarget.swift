@@ -45,7 +45,7 @@ extension HomeTarget: TargetType{
     var headers: [String : String]? {
         switch self {
             default:
-                return nil
+                return ["Content-Type": "application/json"]
         }
     }
     

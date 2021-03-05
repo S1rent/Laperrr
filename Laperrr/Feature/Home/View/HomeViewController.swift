@@ -6,18 +6,26 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class HomeViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
+    let viewModel: HomeViewModel
+    let loadTrigger = BehaviorRelay<Void>(value: ())
     let refreshControl: UIRefreshControl
     let changeNavbarTitle: (_ title: String) -> Void
+    let disposeBag: DisposeBag
     
     init(callBack: @escaping (_ title: String) -> Void) {
+        self.disposeBag = DisposeBag()
+        self.viewModel = HomeViewModel()
         self.refreshControl = UIRefreshControl()
         self.changeNavbarTitle = callBack
+        
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -30,6 +38,25 @@ class HomeViewController: UIViewController {
         self.changeNavbarTitle("Home")
         
         self.setupTableView()
+        self.bindUI()
+    }
+    
+    private func bindUI() {
+        let refreshTrigger = self.tableView.refreshControl?.rx.controlEvent(.valueChanged).mapToVoid().asDriverOnErrorJustComplete() ?? Driver.empty()
+        
+        let output = self.viewModel.transform(input: HomeViewModel.Input(loadTrigger: self.loadTrigger.asDriver(), refreshTrigger: refreshTrigger))
+        
+        self.disposeBag.insert(
+            output.data.drive(onNext: { [weak self] data in
+                print(data)
+            }),
+            output.loading.drive(onNext: { [weak self] loading in
+                
+            }),
+            output.noData.drive(onNext: { [weak self] noData in
+                
+            })
+        )
     }
     
     private func setupTableView() {
