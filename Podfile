@@ -13,7 +13,7 @@ target 'Laperrr' do
     pod 'RxOptional','4.1.0'
     pod 'SnapKit','5.0.1'
     pod 'FLEX', :configurations => ['Debug']
-    pod 'Alamofire', '~> 5.2'
+    pod 'SDWebImage', '~> 5.0'
 
   target 'LaperrrTests' do
     inherit! :search_paths
