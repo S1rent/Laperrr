@@ -18,8 +18,8 @@ class HomeViewController: UIViewController {
         didSet {
             self.activityIndicator.isHidden = true
             self.activityIndicator.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
-            self.activityIndicator.color = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            self.activityIndicator.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+            self.activityIndicator.color = UIColor.white
+            self.activityIndicator.backgroundColor = UIColor.black
             self.activityIndicator.layer.cornerRadius = 6
             self.activityIndicator.snp.makeConstraints { make in
                 make.height.equalTo(50)
