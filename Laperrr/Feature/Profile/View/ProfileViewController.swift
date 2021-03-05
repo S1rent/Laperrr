@@ -68,11 +68,12 @@ class ProfileViewController: UIViewController {
         self.labelName.text = data.name
         self.labelEmail.text = data.email
         
-        self.setupStackViewData(stackView: self.educationStackView, experienceList: data.educationList)
-        self.setupStackViewData(stackView: self.workingExperienceStackView, experienceList: data.workingExperienceList)
+        self.setupExperienceStackViewData(stackView: self.educationStackView, experienceList: data.educationList)
+        self.setupExperienceStackViewData(stackView: self.workingExperienceStackView, experienceList: data.workingExperienceList)
+        self.setupSkillStackViewData(stackView: self.skillStackView, skills: data.skills)
     }
     
-    private func setupStackViewData(stackView: UIStackView, experienceList: [Experience]) {
+    private func setupExperienceStackViewData(stackView: UIStackView, experienceList: [Experience]) {
         
         for (index, experience) in experienceList.enumerated() {
             let experienceItem = ExperienceItemView()
@@ -95,8 +96,32 @@ class ProfileViewController: UIViewController {
         }
     }
     
+    private func setupSkillStackViewData(stackView: UIStackView, skills: [Skill]) {
+
+        for (index, skill) in skills.enumerated() {
+            let skillItem = SkillItemView()
+            
+            skillItem.labelSkillName.text = skill.skillName
+            skillItem.progressView.progress = Float(skill.progress / 100)
+            
+            stackView.addArrangedSubview(skillItem)
+            
+            if index != skills.count-1 {
+                let separatorView = addSeparatorView()
+                
+                stackView.addArrangedSubview(separatorView)
+                separatorView.snp.makeConstraints { make in
+                    make.height.equalTo(0.75)
+                    make.leading.equalToSuperview().offset(8)
+                    make.trailing.equalToSuperview().offset(-8)
+                }
+            }
+        }
+    }
+    
     private func setupView() {
         self.imageProfile.layer.cornerRadius = self.imageProfile.frame.width / 2
+        
         self.setupStackView(stackView: self.educationStackView)
         self.setupStackView(stackView: self.workingExperienceStackView)
         self.setupStackView(stackView: self.skillStackView)

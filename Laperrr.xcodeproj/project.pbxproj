@@ -16,6 +16,8 @@
 		A160611E25F2457000345625 /* UIStackView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A160611D25F2457000345625 /* UIStackView+Extension.swift */; };
 		A160612525F2462A00345625 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A160612425F2462A00345625 /* ProfileViewModel.swift */; };
 		A160612C25F246F700345625 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A160612B25F246F700345625 /* Profile.swift */; };
+		A160614125F28CA200345625 /* SkillItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A160614025F28CA200345625 /* SkillItemView.swift */; };
+		A160614625F28CB400345625 /* SkillItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A160614525F28CB400345625 /* SkillItemView.xib */; };
 		A195685825F12540004EB1C9 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A195685725F12540004EB1C9 /* UIView+Extension.swift */; };
 		A195687C25F12985004EB1C9 /* HomeTabBarViewControllerList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A195687B25F12985004EB1C9 /* HomeTabBarViewControllerList.swift */; };
 		A1DA353525F0CF3600D3917D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DA353425F0CF3600D3917D /* AppDelegate.swift */; };
@@ -75,6 +77,8 @@
 		A160611D25F2457000345625 /* UIStackView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extension.swift"; sourceTree = "<group>"; };
 		A160612425F2462A00345625 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		A160612B25F246F700345625 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		A160614025F28CA200345625 /* SkillItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillItemView.swift; sourceTree = "<group>"; };
+		A160614525F28CB400345625 /* SkillItemView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SkillItemView.xib; sourceTree = "<group>"; };
 		A195685725F12540004EB1C9 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		A195687B25F12985004EB1C9 /* HomeTabBarViewControllerList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarViewControllerList.swift; sourceTree = "<group>"; };
 		A1DA353125F0CF3600D3917D /* Laperrr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Laperrr.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -211,6 +215,8 @@
 		A160613625F28BF000345625 /* SkillItemView */ = {
 			isa = PBXGroup;
 			children = (
+				A160614025F28CA200345625 /* SkillItemView.swift */,
+				A160614525F28CB400345625 /* SkillItemView.xib */,
 			);
 			path = SkillItemView;
 			sourceTree = "<group>";
@@ -591,6 +597,7 @@
 				A160610825F1FBFD00345625 /* ProfileViewController.xib in Resources */,
 				A1DA354425F0CF3700D3917D /* LaunchScreen.storyboard in Resources */,
 				A1DA354125F0CF3700D3917D /* Assets.xcassets in Resources */,
+				A160614625F28CB400345625 /* SkillItemView.xib in Resources */,
 				A1DA372825F11ED300D3917D /* CategoriesViewController.xib in Resources */,
 				A1DC995625F141F000DD0D1C /* HomeTableViewCell.xib in Resources */,
 				A1DA371825F11E1B00D3917D /* HomeViewController.xib in Resources */,
@@ -737,6 +744,7 @@
 				A160611425F23FB800345625 /* ExperienceItemView.swift in Sources */,
 				A1DC995525F141F000DD0D1C /* HomeTableViewCell.swift in Sources */,
 				A1DA353725F0CF3600D3917D /* SceneDelegate.swift in Sources */,
+				A160614125F28CA200345625 /* SkillItemView.swift in Sources */,
 				A1DA358025F0D31F00D3917D /* HomeTabBarViewController.swift in Sources */,
 				A195685825F12540004EB1C9 /* UIView+Extension.swift in Sources */,
 				A1DC997325F1495E00DD0D1C /* ActivityIndicator.swift in Sources */,
