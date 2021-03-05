@@ -27,7 +27,8 @@ class HomeTabBarViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "tes"
-
+        
+        self.setupRightBarButton()
         self.setupNavigationBar()
         self.setupTabBarView()
         self.bindUI()
@@ -57,8 +58,18 @@ class HomeTabBarViewController: UITabBarController {
         self.tabBar.isTranslucent = false
     }
     
+    private func setupRightBarButton() {
+        let buttonProfile = UIBarButtonItem(image: #imageLiteral(resourceName: "icn-profile"), style: .plain, target: self, action: #selector(navigateToProfile))
+        self.navigationItem.rightBarButtonItem = buttonProfile
+    }
+    
     func changeNavigationBarTitle(title: String) {
         self.title = title
+    }
+    
+    @objc func navigateToProfile() {
+        let viewController = ProfileViewController()
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
 
 }

@@ -19,11 +19,14 @@ class CategoriesViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.changeNavbarTitle("Food Categories")
+        super.viewWillAppear(animated)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.changeNavbarTitle("Food Categories")
     }
 
 
