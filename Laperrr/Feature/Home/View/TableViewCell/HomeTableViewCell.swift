@@ -22,8 +22,10 @@ class HomeTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    public func setData(_ data: String) {
-        
+    public func setData(_ data: Food) {
+        self.labelFoodName.text = data.foodName ?? "-"
+        self.labelFoodOrigin.text = data.foodOrigin ?? "-"
+        self.labelFoodCategory.text = data.foodCategory ?? "-"
     }
     
 }

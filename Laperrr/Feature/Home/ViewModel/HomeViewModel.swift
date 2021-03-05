@@ -26,20 +26,22 @@ final class HomeViewModel: ViewModel {
         
         let activityTracker = ActivityIndicator()
         let errorTracker = ErrorTracker()
+        let disposeBag = DisposeBag()
+        
+        let dataRelay = BehaviorRelay<[Food]>(value: [])
         
         let data = Driver.merge(input.refreshTrigger, input.loadTrigger).flatMap{ _ -> Driver<[Food]> in
                    
-            var foods: [Food] = []
             for _ in 1...10 {
                 HomeNetworkProvider.shared.getRandomFood().trackActivity(activityTracker)
                     .trackError(errorTracker)
                     .asDriverOnErrorJustComplete()
-                    .do(onNext: { food in
-                        foods.append(contentsOf: food)
-                    })
+                    .do(onNext: { data in
+                        dataRelay.accept(dataRelay.value + data)
+                    }).drive().disposed(by: disposeBag)
             }
-            print(foods)
-            return Driver.just(foods)
+           
+            return dataRelay.asDriver()
         }
         
         let noData = data.filter{ $0.isEmpty }.map{ _ in }

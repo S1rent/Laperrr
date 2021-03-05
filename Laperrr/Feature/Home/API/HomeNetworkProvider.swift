@@ -12,7 +12,7 @@ import Moya
 
 class HomeNetworkProvider {
     
-    private let provider = MoyaProvider<HomeTarget>(plugins: [NetworkLoggerPlugin()])
+    private let provider = MoyaProvider<HomeTarget>()
     public static let shared = HomeNetworkProvider()
     private init() {}
     
@@ -21,11 +21,9 @@ class HomeNetworkProvider {
         
         return self.provider.rx
             .request(requestToken)
+            .filterSuccessfulStatusCodes()
             .map(HomeResponseWrapper.self)
             .map { $0.data ?? [] }
-            .do(onNext: { res in
-                print(res)
-            })
             .asObservable()
     }
     

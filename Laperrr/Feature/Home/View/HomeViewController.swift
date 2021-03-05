@@ -47,9 +47,9 @@ class HomeViewController: UIViewController {
         let output = self.viewModel.transform(input: HomeViewModel.Input(loadTrigger: self.loadTrigger.asDriver(), refreshTrigger: refreshTrigger))
         
         self.disposeBag.insert(
-            output.data.drive(onNext: { [weak self] data in
-                print(data)
-            }),
+            output.data.drive(self.tableView.rx.items(cellIdentifier: HomeTableViewCell.identifier, cellType: HomeTableViewCell.self)){ (_, data, cell) in
+                cell.setData(data)
+            },
             output.loading.drive(onNext: { [weak self] loading in
                 
             }),
@@ -60,7 +60,7 @@ class HomeViewController: UIViewController {
     }
     
     private func setupTableView() {
-        self.tableView.register(UINib(nibName: "ThesisTableViewCell", bundle: nil), forCellReuseIdentifier: "ThesisTableViewCell")
+        self.tableView.register(UINib(nibName: HomeTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: HomeTableViewCell.identifier)
         self.tableView.delegate = self
         self.tableView.refreshControl = self.refreshControl
         self.tableView.backgroundColor = #colorLiteral(red: 0.9490196078, green: 0.9490196078, blue: 0.968627451, alpha: 1)
