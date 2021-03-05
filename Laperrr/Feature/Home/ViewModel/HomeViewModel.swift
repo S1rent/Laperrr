@@ -32,7 +32,7 @@ final class HomeViewModel: ViewModel {
         
         let data = Driver.merge(input.refreshTrigger, input.loadTrigger).flatMap{ _ -> Driver<[Food]> in
                    
-            for _ in 1...10 {
+            for _ in 0...10 {
                 HomeNetworkProvider.shared.getRandomFood().trackActivity(activityTracker)
                     .trackError(errorTracker)
                     .asDriverOnErrorJustComplete()
@@ -46,7 +46,9 @@ final class HomeViewModel: ViewModel {
         
         let noData = data.filter{ $0.isEmpty }.map{ _ in }
         
-        return Output(data: data, loading: activityTracker.asDriver(), noData: noData)
+        return Output(data: data,
+                      loading: activityTracker.asDriver(),
+                      noData: noData)
     }
     
 }

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		03A2438AB0AE9B6DE91CC417 /* Pods_Laperrr_LaperrrUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1269DDD0B9F0AB3A7F20F10 /* Pods_Laperrr_LaperrrUITests.framework */; };
 		12767CAD73ABA6895ED6D02C /* Pods_Laperrr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2893E0DB9C53481A2FF791F3 /* Pods_Laperrr.framework */; };
+		A160610725F1FBFD00345625 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A160610525F1FBFD00345625 /* ProfileViewController.swift */; };
+		A160610825F1FBFD00345625 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A160610625F1FBFD00345625 /* ProfileViewController.xib */; };
 		A195685825F12540004EB1C9 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A195685725F12540004EB1C9 /* UIView+Extension.swift */; };
 		A195687C25F12985004EB1C9 /* HomeTabBarViewControllerList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A195687B25F12985004EB1C9 /* HomeTabBarViewControllerList.swift */; };
 		A1DA353525F0CF3600D3917D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DA353425F0CF3600D3917D /* AppDelegate.swift */; };
@@ -61,6 +63,8 @@
 		89A4DA4A38ADF19F87940093 /* Pods-Laperrr.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Laperrr.debug.xcconfig"; path = "Target Support Files/Pods-Laperrr/Pods-Laperrr.debug.xcconfig"; sourceTree = "<group>"; };
 		959378AD9157508843019A8A /* Pods_LaperrrTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LaperrrTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1269DDD0B9F0AB3A7F20F10 /* Pods_Laperrr_LaperrrUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Laperrr_LaperrrUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A160610525F1FBFD00345625 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		A160610625F1FBFD00345625 /* ProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
 		A195685725F12540004EB1C9 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		A195687B25F12985004EB1C9 /* HomeTabBarViewControllerList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarViewControllerList.swift; sourceTree = "<group>"; };
 		A1DA353125F0CF3600D3917D /* Laperrr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Laperrr.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -148,6 +152,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		A160610425F1FBDD00345625 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				A160610525F1FBFD00345625 /* ProfileViewController.swift */,
+				A160610625F1FBFD00345625 /* ProfileViewController.xib */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		A195684A25F12366004EB1C9 /* Singleton */ = {
 			isa = PBXGroup;
 			children = (
@@ -225,6 +238,7 @@
 				A1DA371C25F11E3100D3917D /* Categories */,
 				A1DA357A25F0D1FC00D3917D /* Home */,
 				A1DA357425F0D06200D3917D /* Launch */,
+				A160610425F1FBDD00345625 /* Profile */,
 				A1DA357B25F0D2DF00D3917D /* TabBar */,
 			);
 			path = Feature;
@@ -519,6 +533,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A160610825F1FBFD00345625 /* ProfileViewController.xib in Resources */,
 				A1DA354425F0CF3700D3917D /* LaunchScreen.storyboard in Resources */,
 				A1DA354125F0CF3700D3917D /* Assets.xcassets in Resources */,
 				A1DA372825F11ED300D3917D /* CategoriesViewController.xib in Resources */,
@@ -660,6 +675,7 @@
 				A1DC997825F1496300DD0D1C /* ErrorTracker.swift in Sources */,
 				A1DC997D25F14AF900DD0D1C /* ObservableType+Extension.swift in Sources */,
 				A1DA353525F0CF3600D3917D /* AppDelegate.swift in Sources */,
+				A160610725F1FBFD00345625 /* ProfileViewController.swift in Sources */,
 				A1DC996325F1451000DD0D1C /* HomeNetworkProvider.swift in Sources */,
 				A1DC995525F141F000DD0D1C /* HomeTableViewCell.swift in Sources */,
 				A1DA353725F0CF3600D3917D /* SceneDelegate.swift in Sources */,
