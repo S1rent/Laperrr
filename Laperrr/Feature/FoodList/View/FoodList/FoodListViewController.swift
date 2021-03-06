@@ -45,6 +45,7 @@ class FoodListViewController: UIViewController {
     let changeNavbarTitle: (_ title: String) -> Void
     let disposeBag: DisposeBag
     var navigator: FoodListNavigator?
+    var hasData: Bool?
     
     init(callBack: @escaping (_ title: String) -> Void) {
         self.disposeBag = DisposeBag()
@@ -96,9 +97,15 @@ class FoodListViewController: UIViewController {
                     self?.activityIndicator.stopAnimating()
                     self?.activityIndicator.isHidden = true
                     self?.activityIndicator.alpha = 0
+                    
+                    if !(self?.hasData ?? true) {
+                        self?.noResultView.isHidden = false
+                    }
                 }
             }),
-            output.noData.drive(self.noResultView.rx.isHidden)
+            output.noData.drive(onNext: { [weak self] hasData in
+                self?.hasData = hasData
+            })
         )
     }
     
@@ -113,7 +120,7 @@ class FoodListViewController: UIViewController {
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] data in
                 guard let self = self else { return }
-                print("asdasd")
+                
                 if let foodData = data as? Food {
                     self.navigator?.goToFoodDetail(data: foodData)
                 }
@@ -140,18 +147,6 @@ class FoodListViewController: UIViewController {
 
 extension FoodListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.transform = CGAffineTransform(translationX: 0, y: cell.frame.height)
-        cell.alpha = 0
-        cell.selectionStyle = .none
-        UIView.animate(
-            withDuration: 1.2,
-            delay: 0.02,
-            usingSpringWithDamping: 0.6,
-            initialSpringVelocity: 0.1,
-            options: [.curveEaseInOut],
-            animations: {
-                cell.alpha = 1
-                cell.transform = CGAffineTransform(translationX: 0, y: 0)
-        })
+        
     }
 }
