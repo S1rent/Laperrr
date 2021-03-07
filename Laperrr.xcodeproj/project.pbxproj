@@ -55,6 +55,7 @@
 		A1F95F7225F4AB2C003F5F06 /* CategoriesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1F95F7025F4AB2C003F5F06 /* CategoriesTableViewCell.xib */; };
 		A1F95F7925F4ACE5003F5F06 /* CategoriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F95F7725F4ACE5003F5F06 /* CategoriesCollectionViewCell.swift */; };
 		A1F95F7A25F4ACE5003F5F06 /* CategoriesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1F95F7825F4ACE5003F5F06 /* CategoriesCollectionViewCell.xib */; };
+		A1F95F8225F4B0D0003F5F06 /* CategoriesCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F95F8125F4B0D0003F5F06 /* CategoriesCollectionViewModel.swift */; };
 		D0EE62962E65A3AF584BA19A /* Pods_LaperrrTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 959378AD9157508843019A8A /* Pods_LaperrrTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -134,6 +135,7 @@
 		A1F95F7025F4AB2C003F5F06 /* CategoriesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoriesTableViewCell.xib; sourceTree = "<group>"; };
 		A1F95F7725F4ACE5003F5F06 /* CategoriesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCollectionViewCell.swift; sourceTree = "<group>"; };
 		A1F95F7825F4ACE5003F5F06 /* CategoriesCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoriesCollectionViewCell.xib; sourceTree = "<group>"; };
+		A1F95F8125F4B0D0003F5F06 /* CategoriesCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCollectionViewModel.swift; sourceTree = "<group>"; };
 		A9EC76485A54ABBE516510CF /* Pods-Laperrr-LaperrrUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Laperrr-LaperrrUITests.debug.xcconfig"; path = "Target Support Files/Pods-Laperrr-LaperrrUITests/Pods-Laperrr-LaperrrUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F5731696AAE27D122FD946BF /* Pods-LaperrrTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LaperrrTests.debug.xcconfig"; path = "Target Support Files/Pods-LaperrrTests/Pods-LaperrrTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F9037DFBB06624F9312808E5 /* Pods-Laperrr.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Laperrr.release.xcconfig"; path = "Target Support Files/Pods-Laperrr/Pods-Laperrr.release.xcconfig"; sourceTree = "<group>"; };
@@ -462,6 +464,7 @@
 			isa = PBXGroup;
 			children = (
 				A1F95F6925F4A947003F5F06 /* CategoriesViewModel.swift */,
+				A1F95F8125F4B0D0003F5F06 /* CategoriesCollectionViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -810,6 +813,7 @@
 				A1E949CA25F4A6E0009B9D0F /* CategoriesNetworkProvider.swift in Sources */,
 				A1DC995E25F143B700DD0D1C /* FoodListResponseWrapper.swift in Sources */,
 				A1DA371725F11E1B00D3917D /* FoodListViewController.swift in Sources */,
+				A1F95F8225F4B0D0003F5F06 /* CategoriesCollectionViewModel.swift in Sources */,
 				A1DA353F25F0CF3600D3917D /* Laperrr.xcdatamodeld in Sources */,
 				A1DA372725F11ED300D3917D /* CategoriesViewController.swift in Sources */,
 				A1DC997825F1496300DD0D1C /* ErrorTracker.swift in Sources */,

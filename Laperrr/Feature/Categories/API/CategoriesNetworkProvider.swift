@@ -27,4 +27,14 @@ class CategoriesNetworkProvider {
             .asObservable()
     }
     
+    public func getFoodByCategory(with category: String) -> Observable<[Food]> {
+        let requestToken =  CategoryTarget.getFoodListByCategories(category: category)
+        
+        return self.provider.rx
+            .request(requestToken)
+            .filterSuccessfulStatusCodes()
+            .map(FoodListResponseWrapper.self)
+            .map { $0.data ?? [] }
+            .asObservable()
+    }
 }

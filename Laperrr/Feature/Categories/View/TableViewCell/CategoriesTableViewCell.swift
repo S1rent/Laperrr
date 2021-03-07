@@ -6,22 +6,45 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class CategoriesTableViewCell: UITableViewCell {
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var labelName: UILabel!
     
+    var data: FoodCategory?
+    let viewModel = CategoriesCollectionViewModel()
+    let loadTrigger = BehaviorRelay<Void>(value: ())
+    let disposeBag = DisposeBag()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         self.setupCollectionView()
+        self.bindUI()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     
+    private func bindUI() {
+        let output = self.viewModel.transform(input: CategoriesCollectionViewModel.Input(loadTrigger: self.loadTrigger.asDriver(),
+             data: self.data 
+        ))
+        
+        self.disposeBag.insert(
+            output.data.drive(self.collectionView.rx.items(cellIdentifier: CategoriesCollectionViewCell.identifier, cellType: CategoriesCollectionViewCell.self)) { _, data, cell in
+                cell.setData(data)
+            }
+        )
+        
+    }
+    
     public func setData(_ data: FoodCategory) {
+        self.data = data
         self.labelName.text = data.categoryName ?? ""
     }
     

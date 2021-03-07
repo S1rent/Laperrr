@@ -14,4 +14,7 @@ class CategoriesCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
     }
 
+    public func setData(_ data: Food) {
+        
+    }
 }
