@@ -77,7 +77,9 @@ class FoodListViewController: UIViewController {
     private func bindUI() {
         let refreshTrigger = self.tableView.refreshControl?.rx.controlEvent(.valueChanged).mapToVoid().asDriverOnErrorJustComplete() ?? Driver.empty()
         
-        let output = self.viewModel.transform(input: FoodListViewModel.Input(loadTrigger: self.loadTrigger.asDriver(), refreshTrigger: refreshTrigger))
+        let output = self.viewModel.transform(input: FoodListViewModel.Input(loadTrigger: self.loadTrigger.asDriver(), refreshTrigger: refreshTrigger,
+            searchTrigger: self.searchBar.rx.text.orEmpty.asDriver().debounce(RxTimeInterval.milliseconds(500))
+        ))
         
         self.disposeBag.insert(
             output.data.drive(self.tableView.rx.items(cellIdentifier: FoodTableViewCell.identifier, cellType: FoodTableViewCell.self)){ (_, data, cell) in
@@ -148,7 +150,7 @@ class FoodListViewController: UIViewController {
 extension FoodListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.alpha = 0
-        UIView.animate(withDuration: 2, delay: 1, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: 2, delay: 0.5, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
             cell.alpha = 1
         }, completion: nil)
     }

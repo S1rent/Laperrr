@@ -14,6 +14,7 @@ final class FoodListViewModel: ViewModel {
     public struct Input {
         let loadTrigger: Driver<Void>
         let refreshTrigger: Driver<Void>
+        let searchTrigger: Driver<String>
     }
     
     public struct Output {
@@ -27,8 +28,8 @@ final class FoodListViewModel: ViewModel {
         let activityTracker = ActivityIndicator()
         let errorTracker = ErrorTracker()
         let disposeBag = DisposeBag()
-        
         let dataRelay = BehaviorRelay<[Food]>(value: [])
+        var searchedKey = ""
         
         let data = Driver.merge(input.refreshTrigger, input.loadTrigger).flatMap{ _ -> Driver<[Food]> in
             
@@ -46,9 +47,28 @@ final class FoodListViewModel: ViewModel {
             return dataRelay.asDriver()
         }
         
-        let noData = data.map{ !$0.isEmpty }
+        let searchedData = input.searchTrigger.flatMapLatest { searchedFood -> Driver<[Food]> in
+            searchedKey = searchedFood
+            return FoodListNetworkProvider.shared.getSearchedFood(with: searchedFood)
+                    .trackActivity(activityTracker)
+                    .trackError(errorTracker)
+                    .asDriverOnErrorJustComplete()
+        }
         
-        return Output(data: data,
+        let combinedData = Driver.combineLatest(data, searchedData).map { (data, searchedData) -> [Food] in
+            var dataArray: [Food] = []
+            
+            if searchedKey == "" {
+                dataArray = data
+            } else {
+                dataArray = searchedData
+            }
+            return dataArray
+        }
+        
+        let noData = combinedData.map{ !$0.isEmpty }
+        
+        return Output(data: combinedData,
                       loading: activityTracker.asDriver(),
                       noData: noData)
     }
