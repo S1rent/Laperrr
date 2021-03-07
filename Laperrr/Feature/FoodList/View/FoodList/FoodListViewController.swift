@@ -130,7 +130,6 @@ class FoodListViewController: UIViewController {
                 self.deselectRow()
             }, onError: nil, onCompleted: nil, onDisposed: nil)
             .disposed(by: self.disposeBag)
-        
     }
     
     private func setupSearchBar() {
