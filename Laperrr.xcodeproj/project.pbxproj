@@ -47,6 +47,9 @@
 		A1DC997325F1495E00DD0D1C /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DC997225F1495E00DD0D1C /* ActivityIndicator.swift */; };
 		A1DC997825F1496300DD0D1C /* ErrorTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DC997725F1496300DD0D1C /* ErrorTracker.swift */; };
 		A1DC997D25F14AF900DD0D1C /* ObservableType+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DC997C25F14AF900DD0D1C /* ObservableType+Extension.swift */; };
+		A1E949C525F4A5EB009B9D0F /* FoodCategoriesResponseWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E949C425F4A5EB009B9D0F /* FoodCategoriesResponseWrapper.swift */; };
+		A1E949CA25F4A6E0009B9D0F /* CategoriesNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E949C925F4A6E0009B9D0F /* CategoriesNetworkProvider.swift */; };
+		A1E949CF25F4A75E009B9D0F /* CategoryTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E949CE25F4A75E009B9D0F /* CategoryTarget.swift */; };
 		D0EE62962E65A3AF584BA19A /* Pods_LaperrrTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 959378AD9157508843019A8A /* Pods_LaperrrTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -118,6 +121,9 @@
 		A1DC997225F1495E00DD0D1C /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		A1DC997725F1496300DD0D1C /* ErrorTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorTracker.swift; sourceTree = "<group>"; };
 		A1DC997C25F14AF900DD0D1C /* ObservableType+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableType+Extension.swift"; sourceTree = "<group>"; };
+		A1E949C425F4A5EB009B9D0F /* FoodCategoriesResponseWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCategoriesResponseWrapper.swift; sourceTree = "<group>"; };
+		A1E949C925F4A6E0009B9D0F /* CategoriesNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesNetworkProvider.swift; sourceTree = "<group>"; };
+		A1E949CE25F4A75E009B9D0F /* CategoryTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTarget.swift; sourceTree = "<group>"; };
 		A9EC76485A54ABBE516510CF /* Pods-Laperrr-LaperrrUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Laperrr-LaperrrUITests.debug.xcconfig"; path = "Target Support Files/Pods-Laperrr-LaperrrUITests/Pods-Laperrr-LaperrrUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F5731696AAE27D122FD946BF /* Pods-LaperrrTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LaperrrTests.debug.xcconfig"; path = "Target Support Files/Pods-LaperrrTests/Pods-LaperrrTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F9037DFBB06624F9312808E5 /* Pods-Laperrr.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Laperrr.release.xcconfig"; path = "Target Support Files/Pods-Laperrr/Pods-Laperrr.release.xcconfig"; sourceTree = "<group>"; };
@@ -461,6 +467,7 @@
 		A1DA372325F11E9900D3917D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A1E949C425F4A5EB009B9D0F /* FoodCategoriesResponseWrapper.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -468,6 +475,8 @@
 		A1DA372425F11E9C00D3917D /* API */ = {
 			isa = PBXGroup;
 			children = (
+				A1E949C925F4A6E0009B9D0F /* CategoriesNetworkProvider.swift */,
+				A1E949CE25F4A75E009B9D0F /* CategoryTarget.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -763,6 +772,7 @@
 				A16061B725F292BC00345625 /* FoodListNavigator.swift in Sources */,
 				A1DC996825F1461400DD0D1C /* FoodListTarget.swift in Sources */,
 				A160621925F29B2400345625 /* UIApplication+Extension.swift in Sources */,
+				A1E949CA25F4A6E0009B9D0F /* CategoriesNetworkProvider.swift in Sources */,
 				A1DC995E25F143B700DD0D1C /* FoodListResponseWrapper.swift in Sources */,
 				A1DA371725F11E1B00D3917D /* FoodListViewController.swift in Sources */,
 				A1DA353F25F0CF3600D3917D /* Laperrr.xcdatamodeld in Sources */,
@@ -770,6 +780,8 @@
 				A1DC997825F1496300DD0D1C /* ErrorTracker.swift in Sources */,
 				A1DC997D25F14AF900DD0D1C /* ObservableType+Extension.swift in Sources */,
 				A160611E25F2457000345625 /* UIStackView+Extension.swift in Sources */,
+				A1E949C525F4A5EB009B9D0F /* FoodCategoriesResponseWrapper.swift in Sources */,
+				A1E949CF25F4A75E009B9D0F /* CategoryTarget.swift in Sources */,
 				A1DA353525F0CF3600D3917D /* AppDelegate.swift in Sources */,
 				A160610725F1FBFD00345625 /* ProfileViewController.swift in Sources */,
 				A1DC996325F1451000DD0D1C /* FoodListNetworkProvider.swift in Sources */,

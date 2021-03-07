@@ -37,5 +37,4 @@ class FoodListNetworkProvider {
             .map { $0.data ?? [] }
             .asObservable()
     }
-    
 }
