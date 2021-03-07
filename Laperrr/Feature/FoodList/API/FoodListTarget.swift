@@ -1,5 +1,5 @@
 //
-//  HomeTarget.swift
+//  FoodListTarget.swift
 //  Laperrr
 //
 //  Created by IT Division on 04/03/21.
@@ -8,11 +8,12 @@
 import Foundation
 import Moya
 
-internal enum HomeTarget{
+internal enum FoodListTarget{
     case getRandomFood
+    case getSearchedFood(text: String)
 }
 
-extension HomeTarget: TargetType{
+extension FoodListTarget: TargetType{
     var baseURL: URL {
         return URL(string: "https://www.themealdb.com/")!
     }
@@ -21,6 +22,8 @@ extension HomeTarget: TargetType{
         switch self {
         case .getRandomFood:
             return "api/json/v1/1/random.php"
+        case .getSearchedFood:
+            return "api/json/v1/1/search.php"
         }
     }
     
@@ -28,6 +31,10 @@ extension HomeTarget: TargetType{
         switch self {
             case .getRandomFood:
                 return nil
+            case let .getSearchedFood(text):
+                return [
+                    "s": text
+                ]
         }
     }
     
@@ -37,7 +44,7 @@ extension HomeTarget: TargetType{
     
     var method: Moya.Method {
         switch self {
-            case .getRandomFood:
+            case .getRandomFood, .getSearchedFood:
                 return .get
         }
     }

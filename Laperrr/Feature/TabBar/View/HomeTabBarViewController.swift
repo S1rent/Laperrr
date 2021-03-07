@@ -35,7 +35,9 @@ class HomeTabBarViewController: UITabBarController {
     }
     
     private func bindUI() {
-        let output = self.viewModel.transform(input: HomeTabBarViewModel.Input(loadTrigger: loadTrigger.asDriver(), callBack: self.changeNavigationBarTitle
+        let output = self.viewModel.transform(input: HomeTabBarViewModel.Input(
+            loadTrigger: loadTrigger.asDriver(),
+            callBack: self.changeNavigationBarTitle
         ))
         
         self.disposeBag.insert(
@@ -69,7 +71,7 @@ class HomeTabBarViewController: UITabBarController {
     
     @objc func navigateToProfile() {
         let viewController = ProfileViewController()
-        self.navigationController?.pushViewController(viewController, animated: true)
+        UIApplication.topViewController()?.navigationController?.pushViewController(viewController, animated: true)
     }
 
 }

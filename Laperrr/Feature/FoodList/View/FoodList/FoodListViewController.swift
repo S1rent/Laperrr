@@ -1,5 +1,5 @@
 //
-//  HomeViewController.swift
+//  FoodListViewController.swift
 //  Laperrr
 //
 //  Created by IT Division on 04/03/21.
@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 import SnapKit
 
-class HomeViewController: UIViewController {
+class FoodListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -39,15 +39,17 @@ class HomeViewController: UIViewController {
         return label
     }()
     
-    let viewModel: HomeViewModel
+    let viewModel: FoodListViewModel
     let loadTrigger = BehaviorRelay<Void>(value: ())
     let refreshControl: UIRefreshControl
     let changeNavbarTitle: (_ title: String) -> Void
     let disposeBag: DisposeBag
+    var navigator: FoodListNavigator?
+    var hasData: Bool?
     
     init(callBack: @escaping (_ title: String) -> Void) {
         self.disposeBag = DisposeBag()
-        self.viewModel = HomeViewModel()
+        self.viewModel = FoodListViewModel()
         self.refreshControl = UIRefreshControl()
         self.changeNavbarTitle = callBack
         
@@ -59,12 +61,13 @@ class HomeViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.changeNavbarTitle("Home")
+        self.changeNavbarTitle("Food List")
         super.viewWillAppear(animated)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigator = FoodListNavigator(navigationController: self.navigationController)
         
         self.setupSearchBar()
         self.setupTableView()
@@ -74,10 +77,12 @@ class HomeViewController: UIViewController {
     private func bindUI() {
         let refreshTrigger = self.tableView.refreshControl?.rx.controlEvent(.valueChanged).mapToVoid().asDriverOnErrorJustComplete() ?? Driver.empty()
         
-        let output = self.viewModel.transform(input: HomeViewModel.Input(loadTrigger: self.loadTrigger.asDriver(), refreshTrigger: refreshTrigger))
+        let output = self.viewModel.transform(input: FoodListViewModel.Input(loadTrigger: self.loadTrigger.asDriver(), refreshTrigger: refreshTrigger,
+            searchTrigger: self.searchBar.rx.text.orEmpty.asDriver().debounce(RxTimeInterval.milliseconds(500))
+        ))
         
         self.disposeBag.insert(
-            output.data.drive(self.tableView.rx.items(cellIdentifier: HomeTableViewCell.identifier, cellType: HomeTableViewCell.self)){ (_, data, cell) in
+            output.data.drive(self.tableView.rx.items(cellIdentifier: FoodTableViewCell.identifier, cellType: FoodTableViewCell.self)){ (_, data, cell) in
                 cell.setData(data)
             },
             output.loading.drive(onNext: { [weak self] loading in
@@ -94,19 +99,38 @@ class HomeViewController: UIViewController {
                     self?.activityIndicator.stopAnimating()
                     self?.activityIndicator.isHidden = true
                     self?.activityIndicator.alpha = 0
+                    
+                    if !(self?.hasData ?? true) {
+                        self?.noResultView.isHidden = false
+                    }
                 }
             }),
-            output.noData.drive(self.noResultView.rx.isHidden)
+            output.noData.drive(onNext: { [weak self] hasData in
+                self?.hasData = hasData
+            })
         )
     }
     
     private func setupTableView() {
-        self.tableView.register(UINib(nibName: HomeTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: HomeTableViewCell.identifier)
+        self.tableView.register(UINib(nibName: FoodTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: FoodTableViewCell.identifier)
         self.tableView.delegate = self
         self.tableView.refreshControl = self.refreshControl
         self.tableView.backgroundColor = #colorLiteral(red: 0.9490196078, green: 0.9490196078, blue: 0.968627451, alpha: 1)
         self.tableView.estimatedRowHeight = 256.0
         self.tableView.rowHeight = UITableView.automaticDimension
+        self.tableView.rx.modelSelected(Any.self)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] data in
+                guard let self = self else { return }
+                
+                if let foodData = data as? Food {
+                    self.navigator?.goToFoodDetail(data: foodData)
+                }
+                
+                self.deselectRow()
+            }, onError: nil, onCompleted: nil, onDisposed: nil)
+            .disposed(by: self.disposeBag)
+        
     }
     
     private func setupSearchBar() {
@@ -115,22 +139,19 @@ class HomeViewController: UIViewController {
         self.searchBar.isTranslucent = false
         self.searchBar.placeholder = "Search foodies..."
     }
+    
+    private func deselectRow() {
+        if let index = self.tableView.indexPathForSelectedRow {
+            self.tableView.deselectRow(at: index, animated: true)
+        }
+    }
 }
 
-extension HomeViewController: UITableViewDelegate {
+extension FoodListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.transform = CGAffineTransform(translationX: 0, y: cell.frame.height)
         cell.alpha = 0
-        cell.selectionStyle = .none
-        UIView.animate(
-            withDuration: 1.2,
-            delay: 0.02,
-            usingSpringWithDamping: 0.6,
-            initialSpringVelocity: 0.1,
-            options: [.curveEaseInOut],
-            animations: {
-                cell.alpha = 1
-                cell.transform = CGAffineTransform(translationX: 0, y: 0)
-        })
+        UIView.animate(withDuration: 2, delay: 0.5, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
+            cell.alpha = 1
+        }, completion: nil)
     }
 }

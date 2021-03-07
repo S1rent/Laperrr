@@ -14,6 +14,7 @@ target 'Laperrr' do
     pod 'SnapKit','5.0.1'
     pod 'FLEX', :configurations => ['Debug']
     pod 'SDWebImage', '~> 5.0'
+    pod "youtube-ios-player-helper", "~> 1.0"
 
   target 'LaperrrTests' do
     inherit! :search_paths

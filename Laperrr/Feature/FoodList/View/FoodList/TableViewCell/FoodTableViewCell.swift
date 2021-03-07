@@ -1,5 +1,5 @@
 //
-//  HomeTableViewCell.swift
+//  FoodTableViewCell.swift
 //  Laperrr
 //
 //  Created by IT Division on 04/03/21.
@@ -8,7 +8,7 @@
 import UIKit
 import SDWebImage
 
-class HomeTableViewCell: UITableViewCell {
+class FoodTableViewCell: UITableViewCell {
 
     @IBOutlet weak var labelFoodName: UILabel!
     @IBOutlet weak var labelFoodOrigin: UILabel!
