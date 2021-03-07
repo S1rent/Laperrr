@@ -122,7 +122,7 @@
                                     </constraints>
                                 </view>
                             </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstItem="r6T-gH-Efg" firstAttribute="leading" secondItem="AgB-pR-7cl" secondAttribute="leading" constant="16" id="Fkw-Gp-dmk"/>
                                 <constraint firstItem="aXu-tD-fmL" firstAttribute="top" secondItem="AgB-pR-7cl" secondAttribute="top" constant="16" id="Ihr-zk-E5F"/>
@@ -134,6 +134,7 @@
                             </constraints>
                         </view>
                     </subviews>
+                    <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="AgB-pR-7cl" firstAttribute="leading" secondItem="7z9-Jb-ii4" secondAttribute="leading" id="PhK-8B-xbF"/>
                         <constraint firstItem="AgB-pR-7cl" firstAttribute="height" secondItem="7z9-Jb-ii4" secondAttribute="height" priority="250" id="buG-qo-FJp"/>
@@ -145,7 +146,7 @@
                 </scrollView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="7z9-Jb-ii4" secondAttribute="bottom" id="10R-Ek-hcd"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="7z9-Jb-ii4" secondAttribute="trailing" id="CPe-pc-YKY"/>

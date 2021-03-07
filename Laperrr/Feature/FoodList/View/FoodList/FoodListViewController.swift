@@ -147,6 +147,9 @@ class FoodListViewController: UIViewController {
 
 extension FoodListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
+        cell.alpha = 0
+        UIView.animate(withDuration: 2, delay: 1, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
+            cell.alpha = 1
+        }, completion: nil)
     }
 }
