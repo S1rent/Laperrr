@@ -16,6 +16,7 @@ class SkillItemView: UIView {
     
     init() {
         super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        
         self.bindNib()
     }
     
@@ -36,5 +37,4 @@ class SkillItemView: UIView {
         self.roundedView.layer.cornerRadius = self.roundedView.frame.width / 2
         self.progressView.layer.cornerRadius = 6
     }
-
 }
