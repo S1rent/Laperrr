@@ -24,7 +24,7 @@ public struct FoodListResponseWrapper: Decodable {
 public struct Food: Decodable {
     let foodID: String?
     let foodName: String?
-    let foodCategory: String?
+    var foodCategory: String?
     let foodOrigin: String?
     let foodImageURL: String?
     let foodInstructions: String?

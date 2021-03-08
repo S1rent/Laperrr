@@ -10,6 +10,7 @@ import Moya
 
 internal enum CategoryTarget {
     case getFoodCategories
+    case getFoodListByCategories(category: String)
 }
 
 extension CategoryTarget: TargetType{
@@ -19,8 +20,10 @@ extension CategoryTarget: TargetType{
     
     var path: String {
         switch self {
-        case .getFoodCategories:
-            return "api/json/v1/1/categories.php"
+            case .getFoodCategories:
+                return "api/json/v1/1/categories.php"
+            case .getFoodListByCategories:
+                return "api/json/v1/1/filter.php"
         }
     }
     
@@ -28,6 +31,10 @@ extension CategoryTarget: TargetType{
         switch self {
             case .getFoodCategories:
                 return nil
+            case let .getFoodListByCategories(category):
+                return [
+                    "c": category
+                ]
         }
     }
     
@@ -37,7 +44,7 @@ extension CategoryTarget: TargetType{
     
     var method: Moya.Method {
         switch self {
-            case .getFoodCategories:
+            case .getFoodCategories, .getFoodListByCategories:
                 return .get
         }
     }

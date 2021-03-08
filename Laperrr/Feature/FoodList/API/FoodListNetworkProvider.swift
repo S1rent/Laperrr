@@ -37,4 +37,15 @@ class FoodListNetworkProvider {
             .map { $0.data ?? [] }
             .asObservable()
     }
+    
+    public func getFoodDetailByID(with id: String) -> Observable<Food?> {
+        let requestToken = FoodListTarget.getFoodDetailByID(id: id)
+        
+        return self.provider.rx
+            .request(requestToken)
+            .filterSuccessfulStatusCodes()
+            .map(FoodListResponseWrapper.self)
+            .map { $0.data?.first}
+            .asObservable()
+    }
 }

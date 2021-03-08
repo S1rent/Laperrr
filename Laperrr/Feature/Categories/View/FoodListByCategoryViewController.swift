@@ -1,19 +1,17 @@
 //
-//  FoodListViewController.swift
+//  FoodListByCategoryViewController.swift
 //  Laperrr
 //
-//  Created by IT Division on 04/03/21.
+//  Created by IT Division on 08/03/21.
 //
 
 import UIKit
 import RxSwift
 import RxCocoa
-import SnapKit
 
-class FoodListViewController: UIViewController {
+class FoodListByCategoryViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView! {
         didSet {
             self.activityIndicator.isHidden = true
@@ -39,20 +37,20 @@ class FoodListViewController: UIViewController {
         return label
     }()
     
-    let viewModel: FoodListViewModel
-    let loadTrigger = BehaviorRelay<Void>(value: ())
     let refreshControl: UIRefreshControl
-    let changeNavbarTitle: (_ title: String) -> Void
     let disposeBag: DisposeBag
+    let loadTrigger: BehaviorRelay<Void>
+    let data: FoodCategory
+    let viewModel: FoodListByCategoryViewModel
     var navigator: FoodListNavigator?
-    var hasData: Bool?
-    
-    init(callBack: @escaping (_ title: String) -> Void) {
+    var hasData: Bool = false
+
+    init(data: FoodCategory) {
+        self.data = data
         self.disposeBag = DisposeBag()
-        self.viewModel = FoodListViewModel()
         self.refreshControl = UIRefreshControl()
-        self.changeNavbarTitle = callBack
-        
+        self.loadTrigger = BehaviorRelay<Void>(value: ())
+        self.viewModel = FoodListByCategoryViewModel(data)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -60,93 +58,80 @@ class FoodListViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        self.changeNavbarTitle("Food List")
-        super.viewWillAppear(animated)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "\(self.data.categoryName ?? "") Category"
         self.navigator = FoodListNavigator(navigationController: self.navigationController)
-        
-        self.setupSearchBar()
+
         self.setupTableView()
         self.bindUI()
     }
-    
+
     private func bindUI() {
-        let refreshTrigger = self.tableView.refreshControl?.rx.controlEvent(.valueChanged).mapToVoid().asDriverOnErrorJustComplete() ?? Driver.empty()
+        let refresh = self.tableView.refreshControl?.rx.controlEvent(.valueChanged).mapToVoid().asDriverOnErrorJustComplete() ?? Driver.empty()
         
-        let output = self.viewModel.transform(input: FoodListViewModel.Input(loadTrigger: self.loadTrigger.asDriver(), refreshTrigger: refreshTrigger,
-            searchTrigger: self.searchBar.rx.text.orEmpty.asDriver().debounce(RxTimeInterval.milliseconds(500))
+        let output = self.viewModel.transform(input: FoodListByCategoryViewModel.Input(
+            loadTrigger: self.loadTrigger.asDriver(),
+            refreshTriger: refresh
         ))
         
         self.disposeBag.insert(
-            output.data.drive(self.tableView.rx.items(cellIdentifier: FoodTableViewCell.identifier, cellType: FoodTableViewCell.self)){ (_, data, cell) in
+            output.data.drive(self.tableView.rx.items(cellIdentifier: FoodTableViewCell.identifier, cellType: FoodTableViewCell.self)) { (_, data, cell) in
                 cell.setData(data)
+                cell.labelFoodOrigin.isHidden = true
+                cell.labelFoodCategory.isHidden = true
             },
             output.loading.drive(onNext: { [weak self] loading in
+                guard let self = self else { return }
+                
                 if loading {
-                    self?.tableView.refreshControl?.alpha = 0
-                    let height = self?.refreshControl.frame.height
-                    self?.tableView.setContentOffset(CGPoint(x: 0, y: -(height ?? 0)), animated: true)
-                    self?.activityIndicator.startAnimating()
-                    self?.activityIndicator.isHidden = false
-                    self?.activityIndicator.alpha = 1
-                    self?.noResultView.isHidden = true
+                    let height = self.refreshControl.frame.height
+                    self.tableView.setContentOffset(CGPoint(x: 0, y: -(height )), animated: true)
+                    self.activityIndicator.startAnimating()
+                    self.activityIndicator.isHidden = false
+                    self.activityIndicator.alpha = 1
+                    self.noResultView.isHidden = true
                 } else {
-                    self?.refreshControl.endRefreshing()
-                    self?.activityIndicator.stopAnimating()
-                    self?.activityIndicator.isHidden = true
-                    self?.activityIndicator.alpha = 0
-                    
-                    if !(self?.hasData ?? true) {
-                        self?.noResultView.isHidden = false
-                    }
+                    self.refreshControl.endRefreshing()
+                    self.activityIndicator.stopAnimating()
+                    self.activityIndicator.isHidden = true
+                    self.activityIndicator.alpha = 0
+                    self.noResultView.isHidden = self.hasData
                 }
             }),
             output.noData.drive(onNext: { [weak self] hasData in
-                self?.hasData = hasData
+                guard let self = self else { return }
+                self.hasData = hasData
             })
         )
     }
     
     private func setupTableView() {
-        self.tableView.register(UINib(nibName: FoodTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: FoodTableViewCell.identifier)
+        self.tableView.register(FoodTableViewCell.nib, forCellReuseIdentifier: FoodTableViewCell.identifier)
         self.tableView.delegate = self
         self.tableView.refreshControl = self.refreshControl
-        self.tableView.backgroundColor = #colorLiteral(red: 0.9490196078, green: 0.9490196078, blue: 0.968627451, alpha: 1)
-        self.tableView.estimatedRowHeight = 256.0
-        self.tableView.rowHeight = UITableView.automaticDimension
+        self.tableView.estimatedRowHeight = UITableView.automaticDimension
+        self.tableView.refreshControl?.alpha = 0
         self.tableView.rx.modelSelected(Any.self)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] data in
                 guard let self = self else { return }
-                
                 if let foodData = data as? Food {
-                    self.navigator?.goToFoodDetail(data: foodData)
+                    self.navigator?.goToFoodDetail(data: foodData, needAPICall: true)
                 }
-                
-                self.deselectRow()
+                self.deselectTableView()
             }, onError: nil, onCompleted: nil, onDisposed: nil)
             .disposed(by: self.disposeBag)
     }
     
-    private func setupSearchBar() {
-        self.searchBar.tintColor = UIColor.white
-        self.searchBar.backgroundColor = UIColor.white
-        self.searchBar.isTranslucent = false
-        self.searchBar.placeholder = "Search foodies..."
-    }
-    
-    private func deselectRow() {
+    private func deselectTableView() {
         if let index = self.tableView.indexPathForSelectedRow {
             self.tableView.deselectRow(at: index, animated: true)
         }
     }
 }
 
-extension FoodListViewController: UITableViewDelegate {
+extension FoodListByCategoryViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.alpha = 0
         UIView.animate(withDuration: 2, delay: 0.5, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
