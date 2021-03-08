@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 import youtube_ios_player_helper
 
 class FoodDetailViewController: UIViewController {
@@ -19,10 +21,18 @@ class FoodDetailViewController: UIViewController {
     @IBOutlet weak var labelTags: UILabel!
     @IBOutlet weak var embedView: UIView!
     
-    let data: Food
+    var data: Food
+    let needAPICall: Bool
+    let loadTrigger: BehaviorRelay<Void>
+    let viewModel: FoodDetailViewModel
+    let disposeBag: DisposeBag
     
-    init(data: Food) {
+    init(data: Food, needAPICall: Bool = false) {
         self.data = data
+        self.needAPICall = needAPICall
+        self.loadTrigger = BehaviorRelay<Void>(value: ())
+        self.viewModel = FoodDetailViewModel(data: data)
+        self.disposeBag = DisposeBag()
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -35,7 +45,12 @@ class FoodDetailViewController: UIViewController {
         self.title = "Food Detail"
         
         self.setupView()
-        self.setData()
+        
+        if needAPICall {
+            self.bindUI()
+        } else {
+            self.setData()
+        }
     }
     
     private func setData() {
@@ -54,6 +69,19 @@ class FoodDetailViewController: UIViewController {
         }
     }
     
+    private func bindUI() {
+        let output = self.viewModel.transform(input: FoodDetailViewModel.Input(loadTrigger: self.loadTrigger.asDriver()
+        ))
+        
+        self.disposeBag.insert(
+            output.data.drive(onNext:{ [weak self] data in
+                guard let self = self else { return }
+                self.data = data
+                self.setData()
+            })
+        )
+    }
+    
     private func setupView() {
         self.imageFood.layer.cornerRadius = 6
         self.imageFood.layer.borderWidth = 0.6
@@ -62,5 +90,4 @@ class FoodDetailViewController: UIViewController {
         self.embedView.layer.borderColor = UIColor.gray.cgColor
         self.embedView.layer.borderWidth = 0.6
     }
-
 }

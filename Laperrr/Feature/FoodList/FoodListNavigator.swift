@@ -15,8 +15,8 @@ class FoodListNavigator {
         self.navigationController = navigationController
     }
     
-    public func goToFoodDetail(data: Food) {
-        let viewController = FoodDetailViewController(data: data)
+    public func goToFoodDetail(data: Food, needAPICall: Bool = false) {
+        let viewController = FoodDetailViewController(data: data, needAPICall: needAPICall)
         UIApplication.topViewController()?.navigationController?.pushViewController(viewController, animated: true)
     }
 }

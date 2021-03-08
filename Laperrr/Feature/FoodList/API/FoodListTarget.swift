@@ -11,6 +11,7 @@ import Moya
 internal enum FoodListTarget{
     case getRandomFood
     case getSearchedFood(text: String)
+    case getFoodDetailByID(id: String)
 }
 
 extension FoodListTarget: TargetType{
@@ -20,10 +21,12 @@ extension FoodListTarget: TargetType{
     
     var path: String {
         switch self {
-        case .getRandomFood:
-            return "api/json/v1/1/random.php"
-        case .getSearchedFood:
-            return "api/json/v1/1/search.php"
+            case .getRandomFood:
+                return "api/json/v1/1/random.php"
+            case .getSearchedFood:
+                return "api/json/v1/1/search.php"
+            case .getFoodDetailByID:
+                return "api/json/v1/1/lookup.php"
         }
     }
     
@@ -35,6 +38,10 @@ extension FoodListTarget: TargetType{
                 return [
                     "s": text
                 ]
+            case let .getFoodDetailByID(id):
+                return [
+                    "i": id
+                ]
         }
     }
     
@@ -44,7 +51,7 @@ extension FoodListTarget: TargetType{
     
     var method: Moya.Method {
         switch self {
-            case .getRandomFood, .getSearchedFood:
+            case .getRandomFood, .getSearchedFood, .getFoodDetailByID:
                 return .get
         }
     }

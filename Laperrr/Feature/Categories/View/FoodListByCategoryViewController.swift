@@ -1,15 +1,15 @@
 //
-//  CategoriesViewController.swift
+//  FoodListByCategoryViewController.swift
 //  Laperrr
 //
-//  Created by IT Division on 04/03/21.
+//  Created by IT Division on 08/03/21.
 //
 
 import UIKit
 import RxSwift
 import RxCocoa
 
-class CategoriesViewController: UIViewController {
+class FoodListByCategoryViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView! {
@@ -38,19 +38,19 @@ class CategoriesViewController: UIViewController {
     }()
     
     let refreshControl: UIRefreshControl
-    let changeNavbarTitle: (_ title: String) -> Void
-    let viewModel: CategoriesViewModel
-    let loadTrigger = BehaviorRelay<Void>(value: ())
     let disposeBag: DisposeBag
-    var navigator: CategoriesNavigator?
-    private var hasData: Bool = false
-    
-    init(callBack: @escaping (_ title: String) -> Void) {
-        self.changeNavbarTitle = callBack
-        self.viewModel = CategoriesViewModel()
-        self.refreshControl = UIRefreshControl()
+    let loadTrigger: BehaviorRelay<Void>
+    let data: FoodCategory
+    let viewModel: FoodListByCategoryViewModel
+    var navigator: FoodListNavigator?
+    var hasData: Bool = false
+
+    init(data: FoodCategory) {
+        self.data = data
         self.disposeBag = DisposeBag()
-        
+        self.refreshControl = UIRefreshControl()
+        self.loadTrigger = BehaviorRelay<Void>(value: ())
+        self.viewModel = FoodListByCategoryViewModel(data)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -58,31 +58,32 @@ class CategoriesViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        self.changeNavbarTitle("Food Categories")
-        super.viewWillAppear(animated)
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigator = CategoriesNavigator(navigationController: self.navigationController)
-        
+        self.title = "\(self.data.categoryName ?? "") Category"
+        self.navigator = FoodListNavigator(navigationController: self.navigationController)
+
         self.setupTableView()
         self.bindUI()
     }
-    
+
     private func bindUI() {
         let refresh = self.tableView.refreshControl?.rx.controlEvent(.valueChanged).mapToVoid().asDriverOnErrorJustComplete() ?? Driver.empty()
         
-        let output = self.viewModel.transform(input: CategoriesViewModel.Input(loadTrigger: self.loadTrigger.asDriver(), refreshTrigger: refresh
+        let output = self.viewModel.transform(input: FoodListByCategoryViewModel.Input(
+            loadTrigger: self.loadTrigger.asDriver(),
+            refreshTriger: refresh
         ))
         
         self.disposeBag.insert(
-            output.data.drive(self.tableView.rx.items(cellIdentifier: CategoriesTableViewCell.identifier, cellType: CategoriesTableViewCell.self)) { (_, data, cell) in
+            output.data.drive(self.tableView.rx.items(cellIdentifier: FoodTableViewCell.identifier, cellType: FoodTableViewCell.self)) { (_, data, cell) in
                 cell.setData(data)
+                cell.labelFoodOrigin.isHidden = true
+                cell.labelFoodCategory.isHidden = true
             },
             output.loading.drive(onNext: { [weak self] loading in
                 guard let self = self else { return }
+                
                 if loading {
                     let height = self.refreshControl.frame.height
                     self.tableView.setContentOffset(CGPoint(x: 0, y: -(height )), animated: true)
@@ -95,10 +96,7 @@ class CategoriesViewController: UIViewController {
                     self.activityIndicator.stopAnimating()
                     self.activityIndicator.isHidden = true
                     self.activityIndicator.alpha = 0
-                    
-                    if !(self.hasData) {
-                        self.noResultView.isHidden = false
-                    }
+                    self.noResultView.isHidden = self.hasData
                 }
             }),
             output.noData.drive(onNext: { [weak self] hasData in
@@ -109,22 +107,18 @@ class CategoriesViewController: UIViewController {
     }
     
     private func setupTableView() {
-        self.tableView.register(UINib(nibName: CategoriesTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: CategoriesTableViewCell.identifier)
+        self.tableView.register(FoodTableViewCell.nib, forCellReuseIdentifier: FoodTableViewCell.identifier)
         self.tableView.delegate = self
         self.tableView.refreshControl = self.refreshControl
-        self.tableView.backgroundColor = #colorLiteral(red: 0.9490196078, green: 0.9490196078, blue: 0.968627451, alpha: 1)
-        self.tableView.estimatedRowHeight = 256.0
-        self.tableView.rowHeight = UITableView.automaticDimension
+        self.tableView.estimatedRowHeight = UITableView.automaticDimension
         self.tableView.refreshControl?.alpha = 0
         self.tableView.rx.modelSelected(Any.self)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] data in
                 guard let self = self else { return }
-                
-                if let foodCategoryData = data as? FoodCategory {
-                    self.navigator?.goToFoodListByCategory(data: foodCategoryData)
+                if let foodData = data as? Food {
+                    self.navigator?.goToFoodDetail(data: foodData, needAPICall: true)
                 }
-                
                 self.deselectTableView()
             }, onError: nil, onCompleted: nil, onDisposed: nil)
             .disposed(by: self.disposeBag)
@@ -137,7 +131,7 @@ class CategoriesViewController: UIViewController {
     }
 }
 
-extension CategoriesViewController: UITableViewDelegate {
+extension FoodListByCategoryViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.alpha = 0
         UIView.animate(withDuration: 2, delay: 0.5, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
