@@ -104,10 +104,11 @@ class FoodDetailViewController: UIViewController {
                 guard let self = self else { return }
                 
                 if loading {
-                    self.noData.isHidden = true
                     self.activityIndicator.startAnimating()
                     self.activityIndicator.alpha = 1
                     self.activityIndicator.isHidden = false
+                    
+                    self.noData.isHidden = true
                 } else {
                     self.activityIndicator.stopAnimating()
                     self.activityIndicator.alpha = 0

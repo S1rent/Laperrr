@@ -89,20 +89,25 @@ class FoodListByCategoryViewController: UIViewController {
                 if loading {
                     let height = self.refreshControl.frame.height
                     self.tableView.setContentOffset(CGPoint(x: 0, y: -(height )), animated: true)
+                    
                     self.activityIndicator.startAnimating()
                     self.activityIndicator.isHidden = false
                     self.activityIndicator.alpha = 1
+                    
                     self.noResultView.isHidden = true
                 } else {
                     self.refreshControl.endRefreshing()
+                    
                     self.activityIndicator.stopAnimating()
                     self.activityIndicator.isHidden = true
                     self.activityIndicator.alpha = 0
+                    
                     self.noResultView.isHidden = self.hasData
                 }
             }),
             output.noData.drive(onNext: { [weak self] hasData in
                 guard let self = self else { return }
+                
                 self.hasData = hasData
             })
         )
