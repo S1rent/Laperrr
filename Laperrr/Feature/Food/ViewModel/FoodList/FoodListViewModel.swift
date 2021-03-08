@@ -34,7 +34,7 @@ final class FoodListViewModel: ViewModel {
             
             dataRelay.accept([])
             
-            for _ in 0...10 {
+            for _ in 0...15 {
                 FoodNetworkProvider.shared.getRandomFood().trackActivity(activityTracker)
                     .trackError(errorTracker)
                     .asDriverOnErrorJustComplete()

@@ -5,7 +5,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -23,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HMF-i0-74j">
-                    <rect key="frame" x="0.0" y="100" width="414" height="762"/>
+                    <rect key="frame" x="0.0" y="137" width="414" height="725"/>
                     <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="0.84705882352941175" colorSpace="calibratedRGB"/>
                 </tableView>
                 <searchBar contentMode="redraw" barStyle="black" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hlY-0r-GE9">
@@ -34,10 +33,18 @@
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="65d-iu-vrs">
                     <rect key="frame" x="197" y="438" width="20" height="20"/>
                 </activityIndicatorView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Foods you might like" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kGT-6E-q35">
+                    <rect key="frame" x="16" y="108" width="382" height="29"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="kGT-6E-q35" secondAttribute="trailing" constant="16" id="5pW-Iy-3fF"/>
+                <constraint firstItem="kGT-6E-q35" firstAttribute="top" secondItem="hlY-0r-GE9" secondAttribute="bottom" constant="8" id="B4x-UO-r0D"/>
                 <constraint firstItem="65d-iu-vrs" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Q3j-wY-G7k"/>
                 <constraint firstItem="hlY-0r-GE9" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Zp4-ug-2Wi"/>
                 <constraint firstItem="HMF-i0-74j" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="f1Z-Qq-J9x"/>
@@ -45,15 +52,11 @@
                 <constraint firstItem="hlY-0r-GE9" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="iYP-KG-7Vw"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="HMF-i0-74j" secondAttribute="trailing" id="jXA-S3-hxh"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="HMF-i0-74j" secondAttribute="bottom" id="jdL-Nh-ftW"/>
-                <constraint firstItem="HMF-i0-74j" firstAttribute="top" secondItem="hlY-0r-GE9" secondAttribute="bottom" id="vGY-G9-cvQ"/>
+                <constraint firstItem="kGT-6E-q35" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="oIc-OZ-ehp"/>
+                <constraint firstItem="HMF-i0-74j" firstAttribute="top" secondItem="kGT-6E-q35" secondAttribute="bottom" id="qT4-PE-zAY"/>
                 <constraint firstItem="hlY-0r-GE9" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="znP-5x-YVo"/>
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="116.51785714285714"/>
         </view>
     </objects>
-    <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-    </resources>
 </document>
