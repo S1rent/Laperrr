@@ -146,22 +146,20 @@
                                 <constraint firstItem="r6T-gH-Efg" firstAttribute="top" secondItem="aXu-tD-fmL" secondAttribute="bottom" constant="16" id="xtO-BM-bki"/>
                             </constraints>
                         </view>
-                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Qi2-I7-SYk">
-                            <rect key="frame" x="197" y="399" width="20" height="20"/>
-                        </activityIndicatorView>
                     </subviews>
                     <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstItem="Qi2-I7-SYk" firstAttribute="centerX" secondItem="7z9-Jb-ii4" secondAttribute="centerX" id="3SM-a9-vHR"/>
                         <constraint firstItem="AgB-pR-7cl" firstAttribute="leading" secondItem="7z9-Jb-ii4" secondAttribute="leading" id="PhK-8B-xbF"/>
                         <constraint firstItem="AgB-pR-7cl" firstAttribute="height" secondItem="7z9-Jb-ii4" secondAttribute="height" priority="250" id="buG-qo-FJp"/>
                         <constraint firstAttribute="trailing" secondItem="AgB-pR-7cl" secondAttribute="trailing" id="eIq-Ox-4S2"/>
-                        <constraint firstItem="Qi2-I7-SYk" firstAttribute="centerY" secondItem="7z9-Jb-ii4" secondAttribute="centerY" id="ipC-tx-YQH"/>
                         <constraint firstAttribute="bottom" secondItem="AgB-pR-7cl" secondAttribute="bottom" id="nYx-5W-6Z0"/>
                         <constraint firstItem="AgB-pR-7cl" firstAttribute="width" secondItem="7z9-Jb-ii4" secondAttribute="width" id="rVu-tZ-4gu"/>
                         <constraint firstItem="AgB-pR-7cl" firstAttribute="top" secondItem="7z9-Jb-ii4" secondAttribute="top" id="rta-oF-Scu"/>
                     </constraints>
                 </scrollView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Qi2-I7-SYk">
+                    <rect key="frame" x="197" y="438" width="20" height="20"/>
+                </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
@@ -170,6 +168,8 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="7z9-Jb-ii4" secondAttribute="trailing" id="CPe-pc-YKY"/>
                 <constraint firstItem="7z9-Jb-ii4" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="lGj-bf-Ujb"/>
                 <constraint firstItem="7z9-Jb-ii4" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="nuz-m4-7XE"/>
+                <constraint firstItem="Qi2-I7-SYk" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="oQB-am-59v"/>
+                <constraint firstItem="Qi2-I7-SYk" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="tMk-sQ-8Au"/>
             </constraints>
             <point key="canvasLocation" x="-146.37681159420291" y="-21.428571428571427"/>
         </view>

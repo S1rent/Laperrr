@@ -83,7 +83,6 @@ class FoodDetailViewController: UIViewController {
             self.youtubeView.load(withVideoId: String(urlSplit[1]))
         }
         
-        self.scrollView.alpha = 0
         UIView.animate(withDuration: 2, delay: 0.5, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
             self.scrollView.alpha = 1
         }, completion: nil)
@@ -97,11 +96,13 @@ class FoodDetailViewController: UIViewController {
         self.rx.disposeBag.insert(
             output.data.drive(onNext:{ [weak self] data in
                 guard let self = self else { return }
+                
                 self.data = data
                 self.setData()
             }),
             output.loading.drive(onNext: { [weak self] loading in
                 guard let self = self else { return }
+                
                 if loading {
                     self.noData.isHidden = true
                     self.activityIndicator.startAnimating()
@@ -121,9 +122,12 @@ class FoodDetailViewController: UIViewController {
     }
     
     private func setupView() {
+        self.scrollView.alpha = 0
+        
         self.imageFood.layer.cornerRadius = 6
         self.imageFood.layer.borderWidth = 0.6
         self.imageFood.layer.borderColor = UIColor.gray.cgColor
+        
         self.embedView.layer.cornerRadius = 6
         self.embedView.layer.borderColor = UIColor.gray.cgColor
         self.embedView.layer.borderWidth = 0.6
