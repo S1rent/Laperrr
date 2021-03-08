@@ -85,22 +85,27 @@ class FoodListViewController: UIViewController {
                 cell.setData(data)
             },
             output.loading.drive(onNext: { [weak self] loading in
+                guard let self = self else { return }
+                
                 if loading {
-                    self?.tableView.refreshControl?.alpha = 0
-                    let height = self?.refreshControl.frame.height
-                    self?.tableView.setContentOffset(CGPoint(x: 0, y: -(height ?? 0)), animated: true)
-                    self?.activityIndicator.startAnimating()
-                    self?.activityIndicator.isHidden = false
-                    self?.activityIndicator.alpha = 1
-                    self?.noResultView.isHidden = true
-                } else {
-                    self?.refreshControl.endRefreshing()
-                    self?.activityIndicator.stopAnimating()
-                    self?.activityIndicator.isHidden = true
-                    self?.activityIndicator.alpha = 0
+                    self.tableView.refreshControl?.alpha = 0
+                    let height = self.refreshControl.frame.height
+                    self.tableView.setContentOffset(CGPoint(x: 0, y: -(height)), animated: true)
                     
-                    if !(self?.hasData ?? true) {
-                        self?.noResultView.isHidden = false
+                    self.activityIndicator.startAnimating()
+                    self.activityIndicator.isHidden = false
+                    self.activityIndicator.alpha = 1
+                    
+                    self.noResultView.isHidden = true
+                } else {
+                    self.refreshControl.endRefreshing()
+                    
+                    self.activityIndicator.stopAnimating()
+                    self.activityIndicator.isHidden = true
+                    self.activityIndicator.alpha = 0
+                    
+                    if !(self.hasData ?? true) {
+                        self.noResultView.isHidden = false
                     }
                 }
             }),
@@ -114,8 +119,6 @@ class FoodListViewController: UIViewController {
         self.tableView.register(UINib(nibName: FoodTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: FoodTableViewCell.identifier)
         self.tableView.delegate = self
         self.tableView.refreshControl = self.refreshControl
-        self.tableView.backgroundColor = #colorLiteral(red: 0.9490196078, green: 0.9490196078, blue: 0.968627451, alpha: 1)
-        self.tableView.estimatedRowHeight = 256.0
         self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.rx.modelSelected(Any.self)
             .observeOn(MainScheduler.instance)

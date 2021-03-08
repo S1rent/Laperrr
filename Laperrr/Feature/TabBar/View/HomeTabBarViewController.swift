@@ -8,12 +8,12 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import NSObject_Rx
 
 class HomeTabBarViewController: UITabBarController {
 
     let viewModel: HomeTabBarViewModel
     let loadTrigger = BehaviorRelay<Void>(value: ())
-    let disposeBag = DisposeBag()
     
     init() {
         self.viewModel = HomeTabBarViewModel()
@@ -31,6 +31,7 @@ class HomeTabBarViewController: UITabBarController {
         self.setupRightBarButton()
         self.setupNavigationBar()
         self.setupTabBarView()
+        
         self.bindUI()
     }
     
@@ -40,7 +41,7 @@ class HomeTabBarViewController: UITabBarController {
             callBack: self.changeNavigationBarTitle
         ))
         
-        self.disposeBag.insert(
+        self.rx.disposeBag.insert(
             output.data.drive(onNext: { [weak self] viewControllers in
                 self?.viewControllers = viewControllers
             })

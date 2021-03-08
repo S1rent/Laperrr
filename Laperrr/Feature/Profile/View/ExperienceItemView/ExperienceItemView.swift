@@ -1,5 +1,5 @@
 //
-//  ProfileItemView.swift
+//  ExperienceItemView.swift
 //  Laperrr
 //
 //  Created by IT Division on 05/03/21.
@@ -35,5 +35,4 @@ class ExperienceItemView: UIView {
     private func setupView() {
         self.roundedView.layer.cornerRadius = self.roundedView.frame.width/2
     }
-    
 }

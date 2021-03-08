@@ -10,7 +10,6 @@ import RxCocoa
 import RxSwift
 
 final class FoodListViewModel: ViewModel {
-    
     public struct Input {
         let loadTrigger: Driver<Void>
         let refreshTrigger: Driver<Void>

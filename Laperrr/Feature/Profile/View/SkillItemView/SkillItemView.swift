@@ -36,5 +36,4 @@ class SkillItemView: UIView {
         self.roundedView.layer.cornerRadius = self.roundedView.frame.width / 2
         self.progressView.layer.cornerRadius = 6
     }
-
 }

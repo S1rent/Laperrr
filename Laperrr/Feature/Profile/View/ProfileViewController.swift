@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import NSObject_Rx
 
 class ProfileViewController: UIViewController {
 
@@ -24,13 +25,12 @@ class ProfileViewController: UIViewController {
     
     let viewModel: ProfileViewModel
     let loadRelay: BehaviorRelay<Void>
-    let disposeBag: DisposeBag
     var gradientLayer: CAGradientLayer?
     
     init() {
         self.viewModel = ProfileViewModel()
         self.loadRelay = BehaviorRelay<Void>(value: ())
-        self.disposeBag = DisposeBag()
+        
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -56,7 +56,7 @@ class ProfileViewController: UIViewController {
         let output = self.viewModel.transform(input: ProfileViewModel.Input(loadTrigger: self.loadRelay.asDriver()
         ))
         
-        self.disposeBag.insert(
+        self.rx.disposeBag.insert(
             output.data.drive(onNext: { [weak self] data in
                 self?.setupData(data)
             })
