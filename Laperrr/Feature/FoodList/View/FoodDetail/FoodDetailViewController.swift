@@ -20,6 +20,21 @@ class FoodDetailViewController: UIViewController {
     @IBOutlet weak var labelInstructions: UILabel!
     @IBOutlet weak var labelTags: UILabel!
     @IBOutlet weak var embedView: UIView!
+    @IBOutlet weak var noData: UILabel!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView! {
+        didSet {
+            self.activityIndicator.isHidden = true
+            self.activityIndicator.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+            self.activityIndicator.color = UIColor.white
+            self.activityIndicator.backgroundColor = UIColor.black
+            self.activityIndicator.layer.cornerRadius = 6
+            self.activityIndicator.snp.makeConstraints { make in
+                make.height.equalTo(50)
+                make.width.equalTo(50)
+            }
+        }
+    }
     
     var data: Food
     let needAPICall: Bool
@@ -59,7 +74,6 @@ class FoodDetailViewController: UIViewController {
         self.labelOrigin.text = "Origin: \(data.foodOrigin ?? "")"
         self.labelInstructions.text = data.foodInstructions ?? ""
         self.labelFoodCategory.text = "Category: \(data.foodCategory ?? "")"
-        
         self.labelTags.text = data.foodTags ?? "None"
         
         if let youtubeURL = self.data.foodYoutubeURL ?? "" {
@@ -67,6 +81,11 @@ class FoodDetailViewController: UIViewController {
             if urlSplit.count != 2 { return }
             self.youtubeView.load(withVideoId: String(urlSplit[1]))
         }
+        
+        self.scrollView.alpha = 0
+        UIView.animate(withDuration: 2, delay: 0.5, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
+            self.scrollView.alpha = 1
+        }, completion: nil)
     }
     
     private func bindUI() {
@@ -78,6 +97,23 @@ class FoodDetailViewController: UIViewController {
                 guard let self = self else { return }
                 self.data = data
                 self.setData()
+            }),
+            output.loading.drive(onNext: { [weak self] loading in
+                guard let self = self else { return }
+                if loading {
+                    self.noData.isHidden = true
+                    self.activityIndicator.startAnimating()
+                    self.activityIndicator.alpha = 1
+                    self.activityIndicator.isHidden = false
+                } else {
+                    self.activityIndicator.stopAnimating()
+                    self.activityIndicator.alpha = 0
+                    self.activityIndicator.isHidden = true
+                    
+                    if self.data.foodYoutubeURL == "" {
+                        self.noData.isHidden = false
+                    }
+                }
             })
         )
     }
