@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import NSObject_Rx
 
 class FoodListByCategoryViewController: UIViewController {
     
@@ -38,7 +39,6 @@ class FoodListByCategoryViewController: UIViewController {
     }()
     
     let refreshControl: UIRefreshControl
-    let disposeBag: DisposeBag
     let loadTrigger: BehaviorRelay<Void>
     let data: FoodCategory
     let viewModel: FoodListByCategoryViewModel
@@ -47,7 +47,6 @@ class FoodListByCategoryViewController: UIViewController {
 
     init(data: FoodCategory) {
         self.data = data
-        self.disposeBag = DisposeBag()
         self.refreshControl = UIRefreshControl()
         self.loadTrigger = BehaviorRelay<Void>(value: ())
         self.viewModel = FoodListByCategoryViewModel(data)
@@ -75,7 +74,7 @@ class FoodListByCategoryViewController: UIViewController {
             refreshTriger: refresh
         ))
         
-        self.disposeBag.insert(
+        self.rx.disposeBag.insert(
             output.data.drive(self.tableView.rx.items(cellIdentifier: FoodTableViewCell.identifier, cellType: FoodTableViewCell.self)) { (_, data, cell) in
                 cell.setData(data)
                 cell.labelFoodOrigin.isHidden = true
@@ -121,7 +120,7 @@ class FoodListByCategoryViewController: UIViewController {
                 }
                 self.deselectTableView()
             }, onError: nil, onCompleted: nil, onDisposed: nil)
-            .disposed(by: self.disposeBag)
+            .disposed(by: self.rx.disposeBag)
     }
     
     private func deselectTableView() {

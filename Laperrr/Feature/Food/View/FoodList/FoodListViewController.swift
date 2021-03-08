@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import NSObject_Rx
 import SnapKit
 
 class FoodListViewController: UIViewController {
@@ -43,12 +44,10 @@ class FoodListViewController: UIViewController {
     let loadTrigger = BehaviorRelay<Void>(value: ())
     let refreshControl: UIRefreshControl
     let changeNavbarTitle: (_ title: String) -> Void
-    let disposeBag: DisposeBag
     var navigator: FoodNavigator?
     var hasData: Bool?
     
     init(callBack: @escaping (_ title: String) -> Void) {
-        self.disposeBag = DisposeBag()
         self.viewModel = FoodListViewModel()
         self.refreshControl = UIRefreshControl()
         self.changeNavbarTitle = callBack
@@ -81,7 +80,7 @@ class FoodListViewController: UIViewController {
             searchTrigger: self.searchBar.rx.text.orEmpty.asDriver().debounce(RxTimeInterval.milliseconds(500))
         ))
         
-        self.disposeBag.insert(
+        self.rx.disposeBag.insert(
             output.data.drive(self.tableView.rx.items(cellIdentifier: FoodTableViewCell.identifier, cellType: FoodTableViewCell.self)){ (_, data, cell) in
                 cell.setData(data)
             },
@@ -129,7 +128,7 @@ class FoodListViewController: UIViewController {
                 
                 self.deselectRow()
             }, onError: nil, onCompleted: nil, onDisposed: nil)
-            .disposed(by: self.disposeBag)
+            .disposed(by: self.rx.disposeBag)
     }
     
     private func setupSearchBar() {

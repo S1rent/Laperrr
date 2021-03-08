@@ -8,6 +8,7 @@
 import UIKit
 import RxCocoa
 import RxSwift
+import NSObject_Rx
 import youtube_ios_player_helper
 
 class FoodDetailViewController: UIViewController {
@@ -40,14 +41,12 @@ class FoodDetailViewController: UIViewController {
     let needAPICall: Bool
     let loadTrigger: BehaviorRelay<Void>
     let viewModel: FoodDetailViewModel
-    let disposeBag: DisposeBag
     
     init(data: Food, needAPICall: Bool = false) {
         self.data = data
         self.needAPICall = needAPICall
         self.loadTrigger = BehaviorRelay<Void>(value: ())
         self.viewModel = FoodDetailViewModel(data: data)
-        self.disposeBag = DisposeBag()
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -92,7 +91,7 @@ class FoodDetailViewController: UIViewController {
         let output = self.viewModel.transform(input: FoodDetailViewModel.Input(loadTrigger: self.loadTrigger.asDriver()
         ))
         
-        self.disposeBag.insert(
+        self.rx.disposeBag.insert(
             output.data.drive(onNext:{ [weak self] data in
                 guard let self = self else { return }
                 self.data = data

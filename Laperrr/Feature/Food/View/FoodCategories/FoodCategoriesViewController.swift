@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import NSObject_Rx
 
 class FoodCategoriesViewController: UIViewController {
     
@@ -41,7 +42,6 @@ class FoodCategoriesViewController: UIViewController {
     let changeNavbarTitle: (_ title: String) -> Void
     let viewModel: FoodCategoriesViewModel
     let loadTrigger = BehaviorRelay<Void>(value: ())
-    let disposeBag: DisposeBag
     var navigator: FoodNavigator?
     private var hasData: Bool = false
     
@@ -49,7 +49,6 @@ class FoodCategoriesViewController: UIViewController {
         self.changeNavbarTitle = callBack
         self.viewModel = FoodCategoriesViewModel()
         self.refreshControl = UIRefreshControl()
-        self.disposeBag = DisposeBag()
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -77,7 +76,7 @@ class FoodCategoriesViewController: UIViewController {
         let output = self.viewModel.transform(input: FoodCategoriesViewModel.Input(loadTrigger: self.loadTrigger.asDriver(), refreshTrigger: refresh
         ))
         
-        self.disposeBag.insert(
+        self.rx.disposeBag.insert(
             output.data.drive(self.tableView.rx.items(cellIdentifier: FoodCategoriesTableViewCell.identifier, cellType: FoodCategoriesTableViewCell.self)) { (_, data, cell) in
                 cell.setData(data)
             },
@@ -127,7 +126,7 @@ class FoodCategoriesViewController: UIViewController {
                 
                 self.deselectTableView()
             }, onError: nil, onCompleted: nil, onDisposed: nil)
-            .disposed(by: self.disposeBag)
+            .disposed(by: self.rx.disposeBag)
     }
     
     private func deselectTableView() {
