@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CategoriesViewController" customModule="Laperrr" customModuleProvider="target">
             <connections>
+                <outlet property="activityIndicator" destination="5y6-c5-tgw" id="EWJ-6v-7vJ"/>
                 <outlet property="tableView" destination="HVL-tc-g3j" id="Aj0-wO-Km2"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -24,13 +25,18 @@
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="5y6-c5-tgw">
+                    <rect key="frame" x="197" y="438" width="20" height="20"/>
+                </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="5y6-c5-tgw" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="3VE-Vb-DW7"/>
                 <constraint firstItem="HVL-tc-g3j" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Tcq-lE-Yf6"/>
                 <constraint firstItem="HVL-tc-g3j" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Xdy-oi-0hS"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="HVL-tc-g3j" secondAttribute="trailing" id="Y0O-jb-kdj"/>
+                <constraint firstItem="5y6-c5-tgw" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="Zva-5Y-6DM"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="HVL-tc-g3j" secondAttribute="bottom" id="qdA-pg-IGq"/>
             </constraints>
             <point key="canvasLocation" x="-146" y="-21"/>

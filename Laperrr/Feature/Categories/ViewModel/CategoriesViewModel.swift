@@ -26,7 +26,6 @@ final class CategoriesViewModel: ViewModel {
         let errorTracker = ErrorTracker()
         
         let data = Driver.merge(input.loadTrigger, input.refreshTrigger).flatMapLatest { _ -> Driver<[FoodCategory]> in
-            
             return CategoriesNetworkProvider.shared.getFoodCategories().trackError(errorTracker)
                 .trackActivity(activityTracker)
                 .asDriverOnErrorJustComplete()
