@@ -44,6 +44,7 @@ class FoodListViewController: UIViewController {
     let loadTrigger = BehaviorRelay<Void>(value: ())
     let refreshControl: UIRefreshControl
     let changeNavbarTitle: (_ title: String) -> Void
+    
     var navigator: FoodNavigator?
     var hasData: Bool?
     
@@ -61,6 +62,7 @@ class FoodListViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.changeNavbarTitle("Food List")
+        
         super.viewWillAppear(animated)
     }
     
@@ -70,13 +72,16 @@ class FoodListViewController: UIViewController {
         
         self.setupSearchBar()
         self.setupTableView()
+        
         self.bindUI()
     }
     
     private func bindUI() {
         let refreshTrigger = self.tableView.refreshControl?.rx.controlEvent(.valueChanged).mapToVoid().asDriverOnErrorJustComplete() ?? Driver.empty()
         
-        let output = self.viewModel.transform(input: FoodListViewModel.Input(loadTrigger: self.loadTrigger.asDriver(), refreshTrigger: refreshTrigger,
+        let output = self.viewModel.transform(input: FoodListViewModel.Input(
+            loadTrigger: self.loadTrigger.asDriver(),
+            refreshTrigger: refreshTrigger,
             searchTrigger: self.searchBar.rx.text.orEmpty.asDriver().debounce(RxTimeInterval.milliseconds(500))
         ))
         

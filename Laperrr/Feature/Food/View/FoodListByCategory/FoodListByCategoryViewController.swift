@@ -40,8 +40,9 @@ class FoodListByCategoryViewController: UIViewController {
     
     let refreshControl: UIRefreshControl
     let loadTrigger: BehaviorRelay<Void>
-    let data: FoodCategory
     let viewModel: FoodListByCategoryViewModel
+    let data: FoodCategory
+    
     var navigator: FoodNavigator?
     var hasData: Bool = false
 
@@ -50,6 +51,7 @@ class FoodListByCategoryViewController: UIViewController {
         self.refreshControl = UIRefreshControl()
         self.loadTrigger = BehaviorRelay<Void>(value: ())
         self.viewModel = FoodListByCategoryViewModel(data)
+        
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -63,6 +65,7 @@ class FoodListByCategoryViewController: UIViewController {
         self.navigator = FoodNavigator(navigationController: self.navigationController)
 
         self.setupTableView()
+        
         self.bindUI()
     }
 

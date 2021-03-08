@@ -40,6 +40,7 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        
         self.gradientLayer?.frame = self.gradientView.layer.bounds
     }
     
@@ -48,8 +49,9 @@ class ProfileViewController: UIViewController {
         self.title = "Profile"
         
         self.setupView()
-        self.bindUI()
         self.setupGradient()
+        
+        self.bindUI()
     }
 
     private func bindUI() {

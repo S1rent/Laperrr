@@ -42,7 +42,9 @@ public struct Skill {
 }
 
 class Profile {
+    
     static let shared = Profile()
+    
     public init() { }
     
     public func makeExperienceModel(timeSpan: String, institutionName: String) -> Experience {

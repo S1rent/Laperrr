@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 class FoodNavigator {
+    
     let navigationController: UINavigationController?
     
     init(navigationController: UINavigationController?) {

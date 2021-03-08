@@ -18,6 +18,7 @@ class FoodTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         self.setupView()
     }
 

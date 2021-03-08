@@ -9,10 +9,11 @@ import Foundation
 import UIKit
 
 final class HomeTabBarViewControllerList {
-    public init() { }
     
     static let shared = HomeTabBarViewControllerList()
     var callBack: ((_ title: String) -> Void) = { _ in }
+    
+    public init() { }
     
     func getFoodListViewController() -> UIViewController {
         let viewController = FoodListViewController(callBack: callBack)

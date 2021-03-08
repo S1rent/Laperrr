@@ -37,16 +37,18 @@ class FoodDetailViewController: UIViewController {
         }
     }
     
-    var data: Food
     let needAPICall: Bool
     let loadTrigger: BehaviorRelay<Void>
     let viewModel: FoodDetailViewModel
+    
+    var data: Food
     
     init(data: Food, needAPICall: Bool = false) {
         self.data = data
         self.needAPICall = needAPICall
         self.loadTrigger = BehaviorRelay<Void>(value: ())
         self.viewModel = FoodDetailViewModel(data: data)
+        
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -88,7 +90,8 @@ class FoodDetailViewController: UIViewController {
     }
     
     private func bindUI() {
-        let output = self.viewModel.transform(input: FoodDetailViewModel.Input(loadTrigger: self.loadTrigger.asDriver()
+        let output = self.viewModel.transform(input: FoodDetailViewModel.Input(
+            loadTrigger: self.loadTrigger.asDriver()
         ))
         
         self.rx.disposeBag.insert(

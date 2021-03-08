@@ -42,8 +42,9 @@ class FoodCategoriesViewController: UIViewController {
     let changeNavbarTitle: (_ title: String) -> Void
     let viewModel: FoodCategoriesViewModel
     let loadTrigger = BehaviorRelay<Void>(value: ())
+    
     var navigator: FoodNavigator?
-    private var hasData: Bool = false
+    var hasData: Bool = false
     
     init(callBack: @escaping (_ title: String) -> Void) {
         self.changeNavbarTitle = callBack
@@ -59,6 +60,7 @@ class FoodCategoriesViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.changeNavbarTitle("Food Categories")
+        
         super.viewWillAppear(animated)
     }
 
@@ -67,13 +69,16 @@ class FoodCategoriesViewController: UIViewController {
         self.navigator = FoodNavigator(navigationController: self.navigationController)
         
         self.setupTableView()
+        
         self.bindUI()
     }
     
     private func bindUI() {
         let refresh = self.tableView.refreshControl?.rx.controlEvent(.valueChanged).mapToVoid().asDriverOnErrorJustComplete() ?? Driver.empty()
         
-        let output = self.viewModel.transform(input: FoodCategoriesViewModel.Input(loadTrigger: self.loadTrigger.asDriver(), refreshTrigger: refresh
+        let output = self.viewModel.transform(input: FoodCategoriesViewModel.Input(
+            loadTrigger: self.loadTrigger.asDriver(),
+            refreshTrigger: refresh
         ))
         
         self.rx.disposeBag.insert(
@@ -102,6 +107,7 @@ class FoodCategoriesViewController: UIViewController {
             }),
             output.noData.drive(onNext: { [weak self] hasData in
                 guard let self = self else { return }
+                
                 self.hasData = hasData
             })
         )
@@ -111,8 +117,6 @@ class FoodCategoriesViewController: UIViewController {
         self.tableView.register(UINib(nibName: FoodCategoriesTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: FoodCategoriesTableViewCell.identifier)
         self.tableView.delegate = self
         self.tableView.refreshControl = self.refreshControl
-        self.tableView.backgroundColor = #colorLiteral(red: 0.9490196078, green: 0.9490196078, blue: 0.968627451, alpha: 1)
-        self.tableView.estimatedRowHeight = 256.0
         self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.refreshControl?.alpha = 0
         self.tableView.rx.modelSelected(Any.self)
