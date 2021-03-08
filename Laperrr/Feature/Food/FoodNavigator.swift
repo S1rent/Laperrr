@@ -17,12 +17,16 @@ class FoodNavigator {
     }
     
     public func goToFoodDetail(data: Food, needAPICall: Bool = false) {
-        let viewController = FoodDetailViewController(data: data, needAPICall: needAPICall)
+        let viewModel = FoodDetailViewModel(data: data)
+        let viewController = FoodDetailViewController(data: data, needAPICall: needAPICall, viewModel: viewModel)
+        
         UIApplication.topViewController()?.navigationController?.pushViewController(viewController, animated: true)
     }
     
     public func goToFoodListByCategory(data: FoodCategory) {
-        let viewController = FoodListByCategoryViewController(data: data)
+        let viewModel = FoodListByCategoryViewModel(data)
+        let viewController = FoodListByCategoryViewController(data: data, viewModel: viewModel)
+        
         UIApplication.topViewController()?.navigationController?.pushViewController(viewController, animated: true)
     }
 }

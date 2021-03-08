@@ -46,11 +46,14 @@ class FoodListByCategoryViewController: UIViewController {
     var navigator: FoodNavigator?
     var hasData: Bool = false
 
-    init(data: FoodCategory) {
+    init(
+        data: FoodCategory,
+        viewModel: FoodListByCategoryViewModel
+    ){
         self.data = data
+        self.viewModel = viewModel
         self.refreshControl = UIRefreshControl()
         self.loadTrigger = BehaviorRelay<Void>(value: ())
-        self.viewModel = FoodListByCategoryViewModel(data)
         
         super.init(nibName: nil, bundle: nil)
     }

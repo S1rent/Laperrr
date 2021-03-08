@@ -43,11 +43,15 @@ class FoodDetailViewController: UIViewController {
     
     var data: Food
     
-    init(data: Food, needAPICall: Bool = false) {
+    init(
+        data: Food,
+        needAPICall: Bool = false,
+        viewModel: FoodDetailViewModel
+    ) {
         self.data = data
         self.needAPICall = needAPICall
+        self.viewModel = viewModel
         self.loadTrigger = BehaviorRelay<Void>(value: ())
-        self.viewModel = FoodDetailViewModel(data: data)
         
         super.init(nibName: nil, bundle: nil)
     }

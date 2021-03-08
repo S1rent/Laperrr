@@ -41,17 +41,21 @@ class FoodListViewController: UIViewController {
     }()
     
     let viewModel: FoodListViewModel
-    let loadTrigger = BehaviorRelay<Void>(value: ())
+    let loadTrigger: BehaviorRelay<Void>
     let refreshControl: UIRefreshControl
     let changeNavbarTitle: (_ title: String) -> Void
     
     var navigator: FoodNavigator?
     var hasData: Bool?
     
-    init(callBack: @escaping (_ title: String) -> Void) {
-        self.viewModel = FoodListViewModel()
-        self.refreshControl = UIRefreshControl()
+    init(
+        callBack: @escaping (_ title: String) -> Void,
+        viewModel: FoodListViewModel
+    ) {
+        self.viewModel = viewModel
         self.changeNavbarTitle = callBack
+        self.refreshControl = UIRefreshControl()
+        self.loadTrigger = BehaviorRelay<Void>(value: ())
         
         super.init(nibName: nil, bundle: nil)
     }
