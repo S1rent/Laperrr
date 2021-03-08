@@ -158,6 +158,28 @@ class FoodListViewController: UIViewController {
 }
 
 extension FoodListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let containerView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 70))
+
+        let label = UILabel()
+        label.text = "Foods you might like"
+        label.textColor = #colorLiteral(red: 0.5450980392, green: 0.5450980392, blue: 0.5450980392, alpha: 1)
+        label.font = .boldSystemFont(ofSize: 24)
+        label.sizeToFit()
+        containerView.addSubview(label)
+        label.snp.makeConstraints { make in
+           make.leading.equalToSuperview().offset(16)
+           make.trailing.equalToSuperview().offset(10)
+           make.centerY.equalToSuperview()
+        }
+        containerView.backgroundColor = #colorLiteral(red: 0.9490196078, green: 0.9490196078, blue: 0.968627451, alpha: 1)
+        return containerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
+    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.alpha = 0
         UIView.animate(withDuration: 2, delay: 0.5, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: {
