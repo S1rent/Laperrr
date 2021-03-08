@@ -23,7 +23,7 @@ final class HomeTabBarViewControllerList {
     }
     
     func getCategoryListViewController() -> UIViewController {
-        let viewController = CategoriesViewController(callBack: callBack)
+        let viewController = FoodCategoriesViewController(callBack: callBack)
         viewController.tabBarItem = UITabBarItem(title: "Categories", image: #imageLiteral(resourceName: "icn-category"), tag: 1)
         viewController.tabBarItem.imageInsets = UIEdgeInsets.init(top: -5, left: -5, bottom: -5, right: -5)
         

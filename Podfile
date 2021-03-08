@@ -6,11 +6,12 @@ target 'Laperrr' do
   use_frameworks!
 
   # Pods for Laperrr
-    pod 'Moya/RxSwift','14.0.0'
+    pod 'NSObject+Rx','5.1.0'
     pod 'RxSwift','5.1.0'
     pod 'RxCocoa','5.1.1'
     pod 'RxDataSources','4.0.1'
     pod 'RxOptional','4.1.0'
+    pod 'Moya/RxSwift','14.0.0'
     pod 'SnapKit','5.0.1'
     pod 'FLEX', :configurations => ['Debug']
     pod 'SDWebImage', '~> 5.0'
